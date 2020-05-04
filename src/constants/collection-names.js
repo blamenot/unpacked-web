@@ -1,0 +1,6 @@
+export const COLLECTION_USERS = 'users'
+export const COLLECTION_OFFERS = 'offers'
+export const COLLECTION_GAMES = 'games'
+export const COLLECTION_CHATS = 'chats'
+export const COLLECTION_CLAUSES = 'clauses'
+export const COLLECTION_MESSAGES = 'messages'

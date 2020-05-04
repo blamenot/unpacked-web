@@ -1,0 +1,14 @@
+.modal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.8);
+	text-align: center;
+}
+.modal__body {
+	display: inline-block;
+	margin: 2rem;
+}
