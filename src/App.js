@@ -1,14 +1,14 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux';
-import styled from 'styled-components'
 import { BrowserRouter, Switch, Route} from 'react-router-dom'
 
 import rootReducer from './rootReducer'
 
 //initial components
-import Header from './components/header'
+import Header from './components/Header'
+import Footer from './components/Footer'
 import Modals from './components/modals'
 import SubscriptionMessages from './components/subscription-messages'
 
@@ -42,27 +42,9 @@ const store = createStore(
     undefined,
     applyMiddleware(thunk)
 );
-
-const App = styled.div`
-	background-color: black;
-	font-family: 'Montserrat', sans-serif;
-	color: white;
-	& input {
-		font-family: 'Montserrat', sans-serif;
-		font-size: 14px;
-		color: white;
-		::placeholder {
-			color: #454651;;
-		}
-	}
-	& a {
-		text-decoration: inherit;
-		color: inherit;
-	}
-`
 export default function() {
 	return (
-		<App>
+		<Fragment>
 			<Provider store={store}>
 				<BrowserRouter>
 					<Route component={Header} />
@@ -86,10 +68,11 @@ export default function() {
 							<Route exact path={PATH_PAGE_DEAL} component={PageDeal} />
 							<Route component={PageNotFound} />
 						</Switch>
+					<Footer/>
 					<Modals/>
 				</BrowserRouter>
 				<SubscriptionMessages />
 			</Provider>
-		</App>
+		</Fragment>
 	)
 }
