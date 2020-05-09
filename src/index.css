@@ -1,7 +1,31 @@
+html {
+	height: 100%;
+	font-family: 'Montserrat', sans-serif;
+	background-color: #13131D;;
+	color: white;
+  }
 body {
+	height: 100%;
 	margin: 0;
 	padding: 0;
-	background-color: black;
+}
+#root {
+	min-height: 100%;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+}
+
+input {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 14px;
+	color: white;
+}
+input::placeholder {
+	color: #454651;
+}
+a {
+	text-decoration: inherit;
+	color: inherit;
 }
 .game {
 	background-color: blue;
@@ -44,11 +68,7 @@ body {
 	height: 100px;
 	background: grey;
 }
-header {
-	display: flex;
-	justify-content: space-between;
-	background-color: black;
-}
+
 header nav>*, header nav>button.link {
 	display: inline-block;
 	padding: 10px;
