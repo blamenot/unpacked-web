@@ -6,6 +6,7 @@ import {
 	gameFinderFetchCancel
 } from '../actions/game-finder'
 import StyledInput from '../common/StyledInput'
+import IconSearch from '../common/Icons/IconSearch'
 function GameFinderInput ({
 	searchPhrase,
 	searchKey,
@@ -27,7 +28,8 @@ function GameFinderInput ({
 	return (
 		<StyledInput	value={searchPhrase}
 						placeholder="start typing game name"
-						onChange={onSearchPhraseChange}/>
+						onChange={onSearchPhraseChange}
+						icon={<IconSearch />}/>
 	)
 }
 
