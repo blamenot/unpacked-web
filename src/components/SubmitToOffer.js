@@ -8,12 +8,6 @@ import {
 } from '../actions/chat-cache'
 import {clauseCacheAddRequest} from '../actions/clause-cache'
 import {PATH_PAGE_CHAT} from '../constants/paths'
-import styled from 'styled-components';
-
-const SubmitToOfferContainer = styled.div`
-	padding: 10px;
-`
-
 function SubmitToOffer ({ownerId, gameId, authenticatedUserId, fetched, waitFetch, dealChatId,
 	onChatCacheFetchByParticipantRequest, onChatAndClauseAddRequest, onClauseAddRequest}) {
 	useEffect(() => {
@@ -38,14 +32,10 @@ function SubmitToOffer ({ownerId, gameId, authenticatedUserId, fetched, waitFetc
 		return <Redirect to={redirectUrl} />
 	}
 	if(waitFetch) {
-		return <SubmitToOfferContainer>loading...</SubmitToOfferContainer>
+		return 'loading...'
 	}
 	if(fetched && authenticatedUserId) {
-		return (
-			<SubmitToOfferContainer>
-				<StyledButton wide onClick={onSubmitToOffer}>apply deal</StyledButton>
-			</SubmitToOfferContainer>
-		)
+		return <StyledButton wide onClick={onSubmitToOffer}>apply deal</StyledButton>
 	}
 	return false
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import styled from 'styled-components'
-import SubmitToOffer from './submit-to-offer'
+import SubmitToOffer from './SubmitToOffer'
 
 const GameOfferContainer = styled.div`
 	border: 1px solid #5F606C;
@@ -12,6 +12,9 @@ const GameOfferUser = styled.div`
 	padding: 20px;
 	box-sizing: border-box;
 `
+const SubmitToOfferContainer = styled.div`
+	padding: 10px;
+`
 function GameOffer ({gameId, userId, ownerId, user}) {
 	if(userId === ownerId){
 		return <div>User: {user.name} <small>my offer</small></div>
@@ -21,7 +24,9 @@ function GameOffer ({gameId, userId, ownerId, user}) {
 			<GameOfferUser>
 				{user.name}
 			</GameOfferUser>
-			<SubmitToOffer ownerId={ownerId} gameId={gameId}/>
+			<SubmitToOfferContainer>
+				<SubmitToOffer ownerId={ownerId} gameId={gameId}/>
+			</SubmitToOfferContainer>
 		</GameOfferContainer>
 	) 
 }

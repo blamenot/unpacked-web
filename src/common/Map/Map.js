@@ -31,7 +31,7 @@ function Map({points = []}) {
 		}
 		if(containerEl && !style) {
 			updateStyle()
-			window.onresize = updateStyle //AddEventListener not used to prevent massive memofy leak
+			window.onresize = updateStyle //AddEventListener not used to prevent massive memory leak
 		}
 	}, [refContainer, style, debouncedStyle])
 	return (

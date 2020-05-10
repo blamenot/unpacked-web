@@ -16,11 +16,12 @@ const StyledButtonContents = styled.button`
 	padding: 14px;
 	color: white;
 	width: 100%;
+	cursor: pointer;
 `
-export default function ({wide = false, children}) {
+export default function ({wide = false, children, ...props}) {
 	return (
 		<StyledButtonContainer wide={wide}>
-			<StyledButtonContents >{children}</StyledButtonContents>
+			<StyledButtonContents {...props}>{children}</StyledButtonContents>
 		</StyledButtonContainer>
 	)
 }
