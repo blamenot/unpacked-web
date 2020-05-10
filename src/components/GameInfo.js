@@ -11,16 +11,39 @@ import GameTile from './GameTile'
 const TileContainer = styled.div`
 	text-align: center;
 `
+const GameName = styled.h2`
+	font-size: 24px;
+	padding: 10px 20px;
+	margin: 0;
+	margin-top: 15px;
+`
+const StyledLabel = styled.label`
+	color: #5F606C;
+	font-size: 12px;
+	text-transform: uppercase;
+`
+const Section = styled.section`
+	padding 10px 20px;
+	font-size: 12px;
+`
 function GameInfoDescription({game}) {
+
 	return (
 		<Fragment>
 			<TileContainer>
 				<GameTile game={game} isBig/>
 			</TileContainer>
-			<h2>{game.name}</h2>
-			<div><label>PLATFORM:</label> {game.platform}</div>
-			<div><label>DESCRIPTION:</label></div>
-			<div>{game.description}</div>
+			<GameName>{game.name}</GameName>
+			<Section>
+				<StyledLabel>Platform: </StyledLabel>
+				{game.platform}
+			</Section>
+			{!!game.generes?.length && (
+				<Section>
+					<StyledLabel>Genere: </StyledLabel>
+					{game.generes.join(', ')}
+				</Section>
+			)}
 		</Fragment>
 	)
 }

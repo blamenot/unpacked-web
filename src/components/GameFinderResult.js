@@ -9,7 +9,7 @@ const GameFinderResultContainer = styled.div`
 	border: 1px solid #5F606C;
 	height: 88px;
 	margin: 10px 0;
-	padding: 24px;
+	padding: 20px;
 	display: flex;
 `
 const GameInfo = styled.div`
@@ -17,12 +17,10 @@ const GameInfo = styled.div`
 	flex-direction: column;
 	flex-grow: 1;
 	color: #5F606C;
-	padding-left: 24px;
+	padding-left: 20px;
 `
 const GameInfoName = styled.div`
-	color: white
-`
-const GameInfoPlatform = styled.div`
+	color: white;
 	flex-grow: 1;
 `
 function GameRow({gameId, game}) {
@@ -31,7 +29,7 @@ function GameRow({gameId, game}) {
 			<GameTile game={game}/>
 			<GameInfo>
 				<GameInfoName>{game.name}</GameInfoName>
-				<GameInfoPlatform>{game.platform}</GameInfoPlatform>
+				<div>{game.platform}</div>
 				<div>Offers found: <OffersCounter gameId={gameId}/></div>
 			</GameInfo>
 		</Fragment>

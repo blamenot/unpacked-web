@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 const Tile = styled.div`
 	display: inline-block;
+	box-sizing: border-box;
+	flex-shrink: 0;
 	position: relative;
 	background-color: #154ea3;
 	border #3b64b1 solid 2px;
@@ -12,8 +14,8 @@ const Tile = styled.div`
 	height: 88px;
 	width: 66px;
 	${({isBig}) => isBig && `
-		height: 176px;
-		width: 132px;
+		height: 264px;
+		width: 198px;
 		border-width: 4px;
 		border-radius: 6px;
 		font-size: 16px;
