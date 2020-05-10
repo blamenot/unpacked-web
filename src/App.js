@@ -48,26 +48,28 @@ export default function() {
 			<Provider store={store}>
 				<BrowserRouter>
 					<Route component={Header} />
-						<Switch>
-							<Route exact path="/" component={PageOffers} />
-							<Route exact path={PATH_PAGE_SEARCH} component={PageSearch} />
-							<Route exact path={PATH_PAGE_OFFERS} component={PageOffers} />
-							<Route exact path={PATH_PAGE_PROFILE} component={PageProfile} />
-							<Route exact path={PATH_PAGE_REGISTRATION} component={PageRegistration} />
+						<div>
+							<Switch>
+								<Route exact path="/" component={PageOffers} />
+								<Route exact path={PATH_PAGE_SEARCH} component={PageSearch} />
+								<Route exact path={PATH_PAGE_OFFERS} component={PageOffers} />
+								<Route exact path={PATH_PAGE_PROFILE} component={PageProfile} />
+								<Route exact path={PATH_PAGE_REGISTRATION} component={PageRegistration} />
 
-							<Route exact path={PATH_PAGE_GAME} component={PageGame} />
-							<Route	exact
-									path={PATH_PAGE_GAME + '/' + PATH_TAB_LIST} 
-									render={routeProps => <PageGame {...routeProps} activeTab={PATH_TAB_LIST}/>} />
-							<Route	exact
-									path={PATH_PAGE_GAME + '/' + PATH_TAB_LOCATION} 
-									render={routeProps => <PageGame {...routeProps} activeTab={PATH_TAB_LOCATION}/>} />
+								<Route exact path={PATH_PAGE_GAME} component={PageGame} />
+								<Route	exact
+										path={PATH_PAGE_GAME + '/' + PATH_TAB_LIST} 
+										render={routeProps => <PageGame {...routeProps} activeTab={PATH_TAB_LIST}/>} />
+								<Route	exact
+										path={PATH_PAGE_GAME + '/' + PATH_TAB_LOCATION} 
+										render={routeProps => <PageGame {...routeProps} activeTab={PATH_TAB_LOCATION}/>} />
 
-							<Route exact path={PATH_PAGE_CHATS} component={PageChats} />
-							<Route exact path={PATH_PAGE_CHAT} component={PageChat} />
-							<Route exact path={PATH_PAGE_DEAL} component={PageDeal} />
-							<Route component={PageNotFound} />
-						</Switch>
+								<Route exact path={PATH_PAGE_CHATS} component={PageChats} />
+								<Route exact path={PATH_PAGE_CHAT} component={PageChat} />
+								<Route exact path={PATH_PAGE_DEAL} component={PageDeal} />
+								<Route component={PageNotFound} />
+							</Switch>
+						</div>
 					<Footer/>
 					<Modals/>
 				</BrowserRouter>
