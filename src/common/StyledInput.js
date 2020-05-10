@@ -2,15 +2,18 @@ import React from 'react'
 import styled from 'styled-components'
 const StyledInputContainer = styled.form`
 	display: flex;
-	height: 20px;
-	line-height: 20px;
+	height: 50px;
+	line-height: 50px;
 	margin: 16px 0;
-	padding: 15px;
+	padding-left: 15px;
 	background-color: #191A24;
 	position: relative;
 `
 const StyledInputIconContainer = styled.span`
 	width: 30px;
+	> * {
+		vertical-align: middle;
+	}
 `
 const StyledInputElement = styled.input`
 	flex-grow: 1;
@@ -43,7 +46,7 @@ function StyledInputSubmit({submitLabel}) {
 function StyledInput({
 	value,
 	onChange,
-	onSubmit = (e) => e.preventDefault,
+	onSubmit = (e) => e.preventDefault(),
 	submitLabel = null,
 	icon = null,
 	placeholder = 'type in value',

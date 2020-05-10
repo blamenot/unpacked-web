@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react'
-import GameOffer from './game-offer'
+import GameOffer from './GameOffer'
 import StyledLink from '../common/StyledLink'
 import { PATH_PAGE_GAME } from '../constants/paths'
 function GameOffers ({gameId, users}) {
