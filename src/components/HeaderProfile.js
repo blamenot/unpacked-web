@@ -1,13 +1,13 @@
-import React, {useEffect} from 'react'
-import { connect } from 'react-redux'
+import React, {Fragment, useEffect} from 'react'
+import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom';
 import {authRequestLogout, authRequestSubscribe} from '../actions/auth'
 import {PATH_PAGE_REGISTRATION} from '../constants/paths'
 
 import LoginButton from './login-button'
-import HeaderProfileName from './header-profile-name'
+import HeaderProfileName from './HeaderProfileName'
 
 function HeaderProfile({
-	history,
 	subscribed,
 	authData,
 	unregistered,
@@ -19,31 +19,24 @@ function HeaderProfile({
 		if(!subscribed) { //Subscribe to auth change on firebase
 			onAuthSubscribe()
 		}
-		if(unregistered && authData && authData.uid ) {
-			history.push(PATH_PAGE_REGISTRATION)
-		}
-	}, [subscribed, onAuthSubscribe, unregistered, authData, history])
+	}, [subscribed, onAuthSubscribe])
 
 	if(wait) {//if pending authentication of fetching authorized user.
+		return 'Loading...'
+	}
+	if(unregistered && authData?.uid ) {
+		return <Redirect to={PATH_PAGE_REGISTRATION} />
+	}
+	if(authData) { //user is authenticated
 		return (
-			<nav>
-				<div>wait...</div>
-			</nav>
-		)
-	} else if(authData) { //user is authenticated
-		return (
-			<nav>
+			<Fragment>
 				<HeaderProfileName />
 				<div onClick={onAuthLogout}>Logout</div>
-			</nav>
+			</Fragment>
 		)
-	} else { //user not authenticated
-		return (
-			<nav>
-				<LoginButton />
-			</nav>
-		)
-	}
+	} 
+	//user not authenticated
+	return <LoginButton />
 }
 const mapStateToProps = ({auth, userCache}) => {
 	const userId = auth.authData && auth.authData.uid

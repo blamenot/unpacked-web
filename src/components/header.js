@@ -1,35 +1,77 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
 import styled from 'styled-components'
-import HeaderOffers from './header-offers'
-import HeaderProfile from './header-profile'
-import {
-	PATH_PAGE_SEARCH,
-	PATH_PAGE_CHATS
-} from '../constants/paths'
+import HeaderMenu from './HeaderMenu'
+import HeaderPage from './HeaderPage'
 import Burger from './Burger'
+const HeaderContainer = styled.header`
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+`
+const HeaderLogo = styled.div`
+	line-height: 50px;
+	width: 60px;
+`
 const MenuContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
 	flex-grow: 1;
 	@media(max-width: 767px) {
+		position: absolute;
+		z-index: 2;
+		flex-direction: column;
+		top: 50px;
+		right: 0;
+		padding: 0 10px;
+		background-color: #13131D;
+		opacity: .8;
+		${
+			({isToggled}) => !isToggled &&`
+				display: none;
+			`
+		}
+		> nav {
+			display: flex;
+			align-items: flex-end;
+			flex-direction: column;
+		}
+	}
+`
+const HeaderPageContainer = styled.h1`
+	margin: 0;
+	padding: 0;
+	line-height: 50px;
+	font-size: inherit;
+	font-weight: normal;
+	text-transform: uppercase;
+	@media(min-width: 768px) {
 		display: none;
 	}
 `
-function Header({history}) {
+function Header() {
+	const [isToggled, toggle] = useState(false)
+	useEffect(() => {
+		function closeMenu () {
+			toggle(false)
+		}
+		window.addEventListener('click', closeMenu)
+		return () => window.removeEventListener('click', closeMenu)
+	}, [toggle])
+	function onBurgerClick(e) {
+		e.stopPropagation()
+		toggle(!isToggled)
+	}
 	return (
-		<header>
-			<MenuContainer>
-				<nav>
-					<div>UNPACKED</div>
-					<Link to={PATH_PAGE_SEARCH}>Find games</Link>
-					<HeaderOffers/>
-					<Link to={PATH_PAGE_CHATS}>Deals</Link>
-				</nav>
-				<HeaderProfile history={history} />
+		<HeaderContainer>
+			<HeaderLogo>U-D</HeaderLogo>
+			<MenuContainer isToggled={isToggled}>
+				<HeaderMenu/>
 			</MenuContainer>
-			<Burger/>
-		</header>
+			<HeaderPageContainer>
+				<HeaderPage/>
+			</HeaderPageContainer>
+			<Burger onClick = {onBurgerClick}/>
+		</HeaderContainer>
 	)
 }
 

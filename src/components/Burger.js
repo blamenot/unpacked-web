@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 const BurgerButton = styled.button`
 	cursor: pointer;
-	height: 64px;
-	width: 64px;
+	height: 50px;
+	width: 60px;
 	user-select: none;
 	background: none;
 	color: inherit;
@@ -15,13 +15,13 @@ const BurgerButton = styled.button`
 		display: none;
 	}
 `
-function Burger({onClick, isOpened}) {
+function Burger(props) {
 	return (
-		<BurgerButton onClick={onClick} type="button" isOpened={isOpened}>
-			<svg viewBox="0 0 100 80" width="40" height="40" fill="#fff">
-				<rect width="100" height="20"></rect>
-				<rect y="30" width="100" height="20"></rect>
-				<rect y="60" width="100" height="20"></rect>
+		<BurgerButton {...props} type="button">
+			<svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<line x1="1" y1="1" x2="19" y2="1" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+				<line x1="1" y1="7" x2="19" y2="7" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+				<line x1="1" y1="13" x2="19" y2="13" stroke="white" strokeWidth="2" strokeLinecap="round"/>
 			</svg>
 		</BurgerButton>
 	)
