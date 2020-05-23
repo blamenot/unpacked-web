@@ -1,9 +1,8 @@
 import React from 'react'
-import Message from './message'
+import Message from './Message'
 import Clause from './clause'
 export default function MessagesListBody({messages, clauses}) {
 	const unsortedCommunications = [...messages, ...objectToArrayWithIds(clauses)]
-	console.log('render')
 	const communications = unsortedCommunications.sort((a, b) => {
 			return a.sendDate - b.sendDate
 		})

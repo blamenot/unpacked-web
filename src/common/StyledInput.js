@@ -53,9 +53,15 @@ function StyledInput({
 
 }) {
 	return (
-		<StyledInputContainer onSubmit={onSubmit}>
+		<StyledInputContainer onSubmit={e => {
+			e.preventDefault()
+			onSubmit && onSubmit(value)
+		}}>
 			<StyledInputIcon icon={icon}/>
-			<StyledInputElement value={value} onChange={onChange} type="text" placeholder={placeholder}/>
+			<StyledInputElement	type="text"
+								value={value}
+								onChange={e => onChange(e.target.value)}
+								placeholder={placeholder}/>
 			<StyledInputSubmit submitLabel={submitLabel}/>
 		</StyledInputContainer>
 	)

@@ -4,7 +4,6 @@ const Tile = styled.div`
 	display: inline-block;
 	box-sizing: border-box;
 	flex-shrink: 0;
-	position: relative;
 	background-color: #154ea3;
 	border #3b64b1 solid 2px;
 	border-radius: 3px;

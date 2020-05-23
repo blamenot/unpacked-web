@@ -50,11 +50,11 @@ function GameInfoDescription({game}) {
 function GameInfo({gameId}) {
 	const {url} = useRouteMatch();
 	return (
-		<Fragment>
+		<div>
 			<GameLoader gameId={gameId} Component={GameInfoDescription}/>
 			<StyledLink to={`${url}/${PATH_TAB_LIST}`} right withBackground>Offers list</StyledLink>
 			<StyledLink to={`${url}/${PATH_TAB_LOCATION}`} right withBackground>Offers map</StyledLink>
-		</Fragment>
+		</div>
 	)
 }
 

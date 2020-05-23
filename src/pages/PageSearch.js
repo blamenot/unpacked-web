@@ -1,6 +1,7 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
 import styled from 'styled-components'
+import Footer from '../components/Footer'
 import GameFinderInput from '../components/GameFinderInput'
 import GameFinderResults from '../components/GameFinderResults'
 const PageContents = styled.div`
@@ -8,10 +9,13 @@ const PageContents = styled.div`
 `
 function PageSearch ({games}) {
 	return (
-		<PageContents>
-			<GameFinderInput />
-			<GameFinderResults games={games}/>
-		</PageContents>
+		<Fragment>
+			<PageContents>
+				<GameFinderInput />
+				<GameFinderResults games={games}/>
+			</PageContents>
+			<Footer/>
+		</Fragment>
 	)
 }
 

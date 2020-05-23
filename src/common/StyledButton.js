@@ -1,27 +1,22 @@
 import React from 'react'
 import styled from "styled-components";
-const StyledButtonContainer = styled.span`
-	display: ${props => props.wide ? 'block' : 'inline-block'};
+
+const StyledButton = styled.button`
+	border: 2px solid #FDE74C;
+	color: white;
+	${props => props.reject && `
+		border-color: #AD2031;
+		color: #AD2031;
+	`}
+	font-weight: bold;
+	background: none;
+	line-height: 46px;
+	${props => props.wide && 'width: 100%;'};
+	flex-grow: 1;
+	cursor: pointer;
+	padding: 0;
 	margin: 10px;
 `
-const StyledButtonContents = styled.button`
-	box-sizing: border-box;
-	border: 2px solid #FDE74C;
-	background: none;
-	height: 48px;
-	text-transform: uppercase;
-	font-family: 'Montserrat', sans-serif;
-	font-size: 12px;
-	line-height: 18px;
-	padding: 14px;
-	color: white;
-	width: 100%;
-	cursor: pointer;
-`
-export default function ({wide = false, children, ...props}) {
-	return (
-		<StyledButtonContainer wide={wide}>
-			<StyledButtonContents {...props}>{children}</StyledButtonContents>
-		</StyledButtonContainer>
-	)
+export default function ({ children, ...props}) {
+	return <StyledButton{...props}>{children}</StyledButton>
 }

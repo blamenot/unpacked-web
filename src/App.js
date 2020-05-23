@@ -8,7 +8,6 @@ import rootReducer from './rootReducer'
 
 //initial components
 import Header from './components/Header'
-import Footer from './components/Footer'
 import Modals from './components/modals'
 import SubscriptionMessages from './components/subscription-messages'
 
@@ -20,7 +19,6 @@ import PageRegistration from './pages/PageRegistration'
 import PageGame from './pages/PageGame'
 import PageChats from './pages/PageChats'
 import PageChat from './pages/PageChat'
-import PageDeal from './pages/PageDeal'
 import PageNotFound from './pages/PageNotFound'
 
 import {
@@ -33,7 +31,6 @@ import {
 	PATH_PAGE_GAME,
 	PATH_PAGE_CHATS,
 	PATH_PAGE_CHAT,
-	PATH_PAGE_DEAL
 } from './constants/paths'
 
 
@@ -48,29 +45,25 @@ export default function() {
 			<Provider store={store}>
 				<BrowserRouter>
 					<Route component={Header} />
-						<div>
-							<Switch>
-								<Route exact path="/" component={PageOffers} />
-								<Route exact path={PATH_PAGE_SEARCH} component={PageSearch} />
-								<Route exact path={PATH_PAGE_OFFERS} component={PageOffers} />
-								<Route exact path={PATH_PAGE_PROFILE} component={PageProfile} />
-								<Route exact path={PATH_PAGE_REGISTRATION} component={PageRegistration} />
+						<Switch>
+							<Route exact path="/" component={PageOffers} />
+							<Route exact path={PATH_PAGE_SEARCH} component={PageSearch} />
+							<Route exact path={PATH_PAGE_OFFERS} component={PageOffers} />
+							<Route exact path={PATH_PAGE_PROFILE} component={PageProfile} />
+							<Route exact path={PATH_PAGE_REGISTRATION} component={PageRegistration} />
 
-								<Route exact path={PATH_PAGE_GAME} component={PageGame} />
-								<Route	exact
-										path={PATH_PAGE_GAME + '/' + PATH_TAB_LIST} 
-										render={routeProps => <PageGame {...routeProps} activeTab={PATH_TAB_LIST}/>} />
-								<Route	exact
-										path={PATH_PAGE_GAME + '/' + PATH_TAB_LOCATION} 
-										render={routeProps => <PageGame {...routeProps} activeTab={PATH_TAB_LOCATION}/>} />
+							<Route exact path={PATH_PAGE_GAME} component={PageGame} />
+							<Route	exact
+									path={PATH_PAGE_GAME + '/' + PATH_TAB_LIST} 
+									render={routeProps => <PageGame {...routeProps} activeTab={PATH_TAB_LIST}/>} />
+							<Route	exact
+									path={PATH_PAGE_GAME + '/' + PATH_TAB_LOCATION} 
+									render={routeProps => <PageGame {...routeProps} activeTab={PATH_TAB_LOCATION}/>} />
 
-								<Route exact path={PATH_PAGE_CHATS} component={PageChats} />
-								<Route exact path={PATH_PAGE_CHAT} component={PageChat} />
-								<Route exact path={PATH_PAGE_DEAL} component={PageDeal} />
-								<Route component={PageNotFound} />
-							</Switch>
-						</div>
-					<Footer/>
+							<Route exact path={PATH_PAGE_CHATS} component={PageChats} />
+							<Route exact path={PATH_PAGE_CHAT} component={PageChat} />
+							<Route component={PageNotFound} />
+						</Switch>
 					<Modals/>
 				</BrowserRouter>
 				<SubscriptionMessages />
