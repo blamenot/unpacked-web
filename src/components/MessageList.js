@@ -1,9 +1,13 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
-import MessageListBody from './messages-list-body'
+import styled from 'styled-components'
+import MessageListBody from './MessagesListBody'
 import {messageCacheFetchRequest} from '../actions/message-cache'
 import {clauseCacheFetchActiveByChatRequest} from '../actions/clause-cache'
-
+const MessageListContainer = styled.div`
+	height: calc(100vh - 230px);
+	overflow: auto;
+`
 function MessageList ({
 		chatId,
 		messagesFetched,
@@ -32,7 +36,11 @@ function MessageList ({
 	if(!clausesFetched && !clausesFetched) {
 		return <div>wait...</div>
 	}
-	return <MessageListBody messages={messages} clauses={clauses}/>
+	return (
+		<MessageListContainer>
+			<MessageListBody messages={messages} clauses={clauses}/>
+		</MessageListContainer>
+	)
 }
 const mapStateToProps = ({messageCache, clauseCache}, {chatId}) => ({
 	messagesFetched: messageCache.messagesFetched,

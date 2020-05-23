@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
-import DealBalance from './deal-balance'
-import DealClauses from './deal-clauses'
+import DealBalance from './DealBalance'
+import DealClauses from './DealClauses'
 import {gameCacheFetchMissingGamesRequest} from '../actions/game-cache'
 function Deal ({
 	chatId,
@@ -28,10 +28,13 @@ function Deal ({
 			<pre>{JSON.stringify(gamesFetchErrors)}</pre>
 		</div>)
 	}
-	return (<div>
-		<DealClauses chatId={chatId}/>
-		<DealBalance chatClausesArray={chatClausesArray}/>
-	</div>)
+
+	return (
+		<div>
+			<DealClauses chatId={chatId}/>
+			<DealBalance chatClausesArray={chatClausesArray}/>
+		</div>
+	)
 }
 
 const mapStateToProps = ({clauseCache, gameCache}, {chatId}) => {

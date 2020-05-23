@@ -9,14 +9,14 @@ const UserNameContainer = styled.div`
 `
 function GameLocations({users, gameId}) {
 	return (
-		<Fragment>
+		<div>
 			<StyledLink	to={PATH_PAGE_GAME.replace(':gameId', gameId)} 
 						left
 						bold>
 				Offers map
 			</StyledLink>
 			<Map points={getPointsForUsers(users, gameId)}/>
-		</Fragment>
+		</div>
 	)
 }
 function getPointsForUsers(users, gameId) {

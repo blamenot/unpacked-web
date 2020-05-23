@@ -7,7 +7,6 @@ import {
 	PATH_PAGE_GAME,
 	PATH_PAGE_CHATS,
 	PATH_PAGE_CHAT,
-	PATH_PAGE_DEAL,
 } from '../constants/paths'
 
 function HeaderPage() {
@@ -31,9 +30,6 @@ function HeaderPage() {
 		pageName = 'Deals'
 	}
 	if(useRouteMatch(PATH_PAGE_CHAT)) {
-		pageName = 'Deals'
-	}
-	if(useRouteMatch(PATH_PAGE_DEAL)) {
 		pageName = 'Deals'
 	}
 	return pageName

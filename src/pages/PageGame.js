@@ -4,6 +4,7 @@ import {
 	PATH_TAB_LIST,
 	PATH_TAB_LOCATION,
 } from '../constants/paths'
+import Footer from '../components/Footer'
 import {userCacheFetchByOfferRequest} from '../actions/user-cache'
 import GameInfo from '../components/GameInfo'
 import GameOffers from '../components/GameOffers'
@@ -26,6 +27,7 @@ function PageGame({gameId, activeTab, authUserId, users, error, userCacheFetchBy
 								&& <GameOffers gameId={gameId} users={usersWithOffer} />}
 				{activeTab === PATH_TAB_LOCATION
 								&& <GameLocations gameId={gameId} users={usersWithOffer} />}
+				<Footer/>
 			</Fragment>
 		)
 	}

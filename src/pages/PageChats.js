@@ -1,7 +1,12 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, Fragment} from 'react'
 import {connect} from 'react-redux'
-import Chat from '../components/chat'
+import styled from 'styled-components'
+import Footer from '../components/Footer'
+import Chat from '../components/Chat'
 import {chatCacheFetchByParticipantRequest} from '../actions/chat-cache'
+const PageContents = styled.div`
+	padding: 0 20px;
+`
 function PageChats ({history, match, userId, wait, error, fetched, chats, fetchChats}) {
 	useEffect(() => {
 		if(userId && !wait && !error && !fetched) {
@@ -16,7 +21,12 @@ function PageChats ({history, match, userId, wait, error, fetched, chats, fetchC
 		return <div>Wait...</div> //TODO universal wait handler
 	}
 	const userChats = filterChatsByParticipant(chats, userId)
-	return renderChats(userChats)
+	return (
+		<Fragment>
+			<PageContents>{renderChats(userChats)}</PageContents>
+			<Footer/>
+		</Fragment>
+	)
 }
 function renderChats(userChats) {
 	let renderedChats = []

@@ -14,8 +14,7 @@ function GameFinderInput ({
 	onGameFinderFetchRequest,
 	onGameFinderFetchCancel
 }) {
-	function onSearchPhraseChange(e) {
-		const searchPhrase = e.target.value
+	function onSearchPhraseChange(searchPhrase) {
 		const currentSearchKey = searchPhrase.toLowerCase().trim().substring(0,2)
 
 		if((currentSearchKey.length < 2) && searchKey) {

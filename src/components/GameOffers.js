@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import GameOffer from './GameOffer'
 import StyledLink from '../common/StyledLink'
 import { PATH_PAGE_GAME } from '../constants/paths'
@@ -12,14 +12,14 @@ function GameOffers ({gameId, users}) {
 			key={userId}/>)
 	}
 	return (
-		<Fragment>
+		<div>
 			<StyledLink	to={PATH_PAGE_GAME.replace(':gameId', gameId)}
 						left
 						bold>
 				Offers list
 			</StyledLink>
 			{renderedOffers}
-		</Fragment>
+		</div>
 	)
 }
 export default(GameOffers)

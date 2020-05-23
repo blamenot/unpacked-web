@@ -28,6 +28,13 @@ a {
 	text-decoration: inherit;
 	color: inherit;
 }
+button {
+	outline: none;
+	padding: 0;
+	font-size: 12px;
+	text-transform: uppercase;
+	font-family: 'Montserrat', sans-serif;
+}
 /*Override default leaflet syles*/
 .point-popup .leaflet-popup-content-wrapper{
 	background-color: #13131D;

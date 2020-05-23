@@ -1,9 +1,28 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import Avatar from '../common/Avatar'
+import styled from 'styled-components'
 
-function Message ({message}) {
+const MessageContainer = styled.div`
+	padding: 10px 20px;
+	display: flex;
+`
+const MessageText = styled.p`
+	margin-left: 10px;
+	margin-top: 7px;
+	word-break: break-word;
+`
+function Message ({message, user}) {
+	if(!user) {
+		return <MessageContainer>Loading...</MessageContainer> //TODO perform check earlier
+	}
 	return (
-		<div> {message.id} {message.text} {getStatusSign(message)}</div>
+		<MessageContainer>
+			<Avatar pic={user.pic} name={user.name}/>
+			<MessageText>
+				{message.text} {getStatusSign(message)}
+			</MessageText>
+		</MessageContainer>
 	)
 }
 function getStatusSign(message) {
@@ -12,9 +31,10 @@ function getStatusSign(message) {
 	}
 	return String.fromCharCode(10003)
 }
-const mapStateToProps = ({statePart}) => ({
-})
-const mapDispatchToProps = dispatch => ({
-})
+const mapStateToProps = ({userCache}, {message}) => {
+	return {
+		user: userCache.users[message.authorId]
+	}
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Message)
+export default connect(mapStateToProps)(Message)
