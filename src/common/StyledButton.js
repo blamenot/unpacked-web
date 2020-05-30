@@ -2,6 +2,7 @@ import React from 'react'
 import styled from "styled-components";
 
 const StyledButton = styled.button`
+	box-sizing: border-box;
 	border: 2px solid #FDE74C;
 	color: white;
 	${props => props.reject && `
@@ -15,7 +16,6 @@ const StyledButton = styled.button`
 	flex-grow: 1;
 	cursor: pointer;
 	padding: 0;
-	margin: 10px;
 `
 export default function ({ children, ...props}) {
 	return <StyledButton{...props}>{children}</StyledButton>

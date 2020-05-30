@@ -8,7 +8,7 @@ import rootReducer from './rootReducer'
 
 //initial components
 import Header from './components/Header'
-import Modals from './components/modals'
+import Modals from './containers/Modals'
 import SubscriptionMessages from './components/subscription-messages'
 
 //pages components

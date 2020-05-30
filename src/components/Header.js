@@ -24,7 +24,7 @@ const MenuContainer = styled.div`
 		right: 0;
 		padding: 0 10px;
 		background-color: #13131D;
-		opacity: .8;
+		opacity: .9;
 		${
 			({isToggled}) => !isToggled &&`
 				display: none;
@@ -51,7 +51,7 @@ const HeaderPageContainer = styled.h1`
 function Header() {
 	const [isToggled, toggle] = useState(false)
 	useEffect(() => {
-		function closeMenu () {
+		function closeMenu() {
 			toggle(false)
 		}
 		window.addEventListener('click', closeMenu)

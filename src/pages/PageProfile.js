@@ -1,43 +1,52 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, Fragment} from 'react'
 import {connect} from 'react-redux'
-import AskAuthenticate from '../components/ask-authenticate'
-import ProfileForm from '../components/profile-form'
-import ProfileControls from '../components/ProfileControls'
-import ProfileMap from '../components/profile-map'
-import AddressLookup from '../components/address-lookup'
-import AddressSuggestions from '../components/address-suggestions'
 import {userCacheFetchUserByIdRequest} from '../actions/user-cache'
-
-function PageProfile({match, authData, onUserCacheFetchUserByIdRequest}) {
-	const userId = match.params.uid
+import {userUpdateSaved} from '../actions/user-update'
+import AskAuthenticate from '../components/ask-authenticate'
+import ProfileForm from '../components/ProfileForm'
+import ProfileControls from '../components/ProfileControls'
+import Footer from '../components/Footer'
+function PageProfile({userId, authData, savedUser, wait, userCacheFetchUserByIdRequest, userUpdateSaved}) {
 	useEffect(() => {
-		if(authData) {
-			onUserCacheFetchUserByIdRequest(userId)
+		if(authData && !savedUser) {
+			userCacheFetchUserByIdRequest(userId)
 		}
-	})
+	}, [authData, userId, savedUser, userCacheFetchUserByIdRequest])
+	useEffect(() => {
+		if(savedUser && !wait) {
+			userUpdateSaved(savedUser)
+		}
+	}, [savedUser, wait, userUpdateSaved])
 
 	if(!authData) {
 		return <AskAuthenticate />
 	}
+	const isSelf = userId === authData?.uid
 	return (
-		<div>
-			<ProfileForm userId={userId}/>
-			<AddressLookup userId={userId}/>
-			<AddressSuggestions />
-			<ProfileMap userId={userId}/>
-			<ProfileControls userId={userId}/>
-		</div>
+		<Fragment>
+			<div>
+				<ProfileForm userId={userId} readonly={!isSelf}/>
+				{/* <AddressLookup userId={userId}/>
+				<AddressSuggestions />
+				<ProfileMap userId={userId}/> */}
+				<ProfileControls userId={userId}/>
+			</div>
+			<Footer />
+		</Fragment>
 	)
 
 }
-
-const mapStateToProps = ({auth}) => ({
-	authData: auth.authData,
-})
-
-const mapDispatchToProps = dispatch => ({
-	onUserCacheFetchUserByIdRequest(userId) {
-		dispatch(userCacheFetchUserByIdRequest(userId))
+const mapStateToProps = ({auth, userCache}, {match}) => {
+	const userId = match.params.uid
+	return {
+		userId,
+		authData: auth.authData,
+		savedUser: userCache.users[userId],
+		wait: userCache.userByIdWait || userCache.userUpdateWait
 	}
-})
+}
+const mapDispatchToProps = {
+	userCacheFetchUserByIdRequest,
+	userUpdateSaved
+}
 export default connect(mapStateToProps, mapDispatchToProps)(PageProfile)

@@ -5,9 +5,8 @@ import 'firebase/auth'
 import styled from 'styled-components'
 import * as firebaseui from 'firebaseui'
 import {connect} from 'react-redux'
-import Modal from './modal'
+import Modal from '../common/Modal'
 import {authHideModal} from '../actions/auth'
-
 // Configure FirebaseUI.
 const uiConfig = {
 	// Popup signin flow rather than redirect flow.
@@ -24,28 +23,21 @@ const uiConfig = {
 		}
 	}
 }
-
 const AuthModalContainer = styled.div`
-	color: black;
+	color: unset;
 	& input {
-		color: black;
+		color: unset;
 	}
 `
-
 // Auth component
-function AuthModal({onHideModal}) {
-	const renderCallback = () => (
-		<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
-	)
+function AuthModal({authHideModal}) {
 	return (
-		<AuthModalContainer>
-			<Modal renderCallback={renderCallback} closeCallback={onHideModal}/>
-		</AuthModalContainer>
+		<Modal closeCallback={authHideModal}>
+			<AuthModalContainer>
+				<StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
+			</AuthModalContainer>
+		</Modal>
 	)
 }
-const mapDispatchToProps = dispatch => ({
-    onHideModal() {
-        return dispatch(authHideModal())
-    }
-})
-export default connect(null, mapDispatchToProps)(AuthModal)
+
+export default connect(null, {authHideModal})(AuthModal)

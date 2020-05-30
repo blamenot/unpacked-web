@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useCallback, useRef} from 'react'
 import {Map as LeafletMap, TileLayer} from 'react-leaflet'
-import {useDebounce} from 'use-debounce'
 import L from 'leaflet'
 import MapMarker from './MapMarker'
 import styled from 'styled-components'
@@ -8,35 +7,37 @@ import styled from 'styled-components'
 const MapContainer = styled.div`
 	position: relative;
 	width: 100%;
+	height: 100%;
 	opacity: 0.99;
 `
 
 function Map({points = []}) {
 	const [style, setStyle] = useState(null)
-	const [debouncedStyle] = useDebounce(style, 2000);
-	const refContainer = React.createRef({})
-	useEffect(() => {
-		const containerEl = refContainer.current
-		function updateStyle() {
-			const width = containerEl.offsetWidth
-			const height = window.innerHeight - 70
-			if(style && style.width === width && style.height === height) {
-				return
-			}
+	const containerRef = useRef(null)
+	const updateStyles = useCallback(containerEl => {
+		if(containerEl) {
 			setStyle({
-				position: 'fixed',
-				width,
-				height,
+				width: containerEl.offsetWidth,
+				height: containerEl.offsetHeight,
+				position: 'absolute',
 			})
 		}
-		if(containerEl && !style) {
-			updateStyle()
-			window.onresize = updateStyle //AddEventListener not used to prevent massive memory leak
+	}, [])
+	const getContainerRef = useCallback(containerEl => {
+		updateStyles(containerEl);
+		containerRef.current = containerEl
+	}, [updateStyles])
+	useEffect(() => {
+		const onResizeUpdate = () => {
+			updateStyles(containerRef.current)
 		}
-	}, [refContainer, style, debouncedStyle])
+		window.addEventListener('resize', onResizeUpdate)
+		
+		return () => window.removeEventListener('resize', onResizeUpdate)
+	}, [containerRef, updateStyles])
 	return (
-		<MapContainer ref={refContainer}>
-			<MapPane style={debouncedStyle} points={points} />
+		<MapContainer ref={getContainerRef}>
+			<MapPane style={style} points={points} />
 		</MapContainer>
 	)
 }

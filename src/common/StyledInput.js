@@ -7,6 +7,10 @@ const StyledInputContainer = styled.form`
 	margin: 16px 0;
 	padding-left: 15px;
 	background-color: #191A24;
+	${({readonly}) => readonly && `
+		padding-left: 0;
+		background: none;
+	`}
 	position: relative;
 `
 const StyledInputIconContainer = styled.span`
@@ -25,9 +29,11 @@ const StyledInputElement = styled.input`
 	}
 `
 const StyledInputButton = styled.button`
+	min-width: 50px;
 	background: none;
+	color: black;
+	background-color: #FDE74C;
 	border: none;
-	color: white;
 `
 function StyledInputIcon({icon}) {
 	if(!icon) {
@@ -35,8 +41,8 @@ function StyledInputIcon({icon}) {
 	}
 	return <StyledInputIconContainer>{icon}</StyledInputIconContainer>
 }
-function StyledInputSubmit({submitLabel}) {
-	if(submitLabel) {
+function StyledInputSubmit({submitLabel, readonly}) {
+	if(!submitLabel || readonly) {
 		return null
 	}
 	return(
@@ -50,19 +56,21 @@ function StyledInput({
 	submitLabel = null,
 	icon = null,
 	placeholder = 'type in value',
-
+	readonly
 }) {
 	return (
-		<StyledInputContainer onSubmit={e => {
+		<StyledInputContainer	onSubmit={e => {
 			e.preventDefault()
-			onSubmit && onSubmit(value)
-		}}>
+			onSubmit && !readonly && onSubmit(value)
+		}}
+								readonly={readonly}>
 			<StyledInputIcon icon={icon}/>
 			<StyledInputElement	type="text"
 								value={value}
 								onChange={e => onChange(e.target.value)}
-								placeholder={placeholder}/>
-			<StyledInputSubmit submitLabel={submitLabel}/>
+								placeholder={placeholder}
+								readonly={readonly}/>
+			<StyledInputSubmit submitLabel={submitLabel} readonly={readonly}/>
 		</StyledInputContainer>
 	)
 }
