@@ -10,7 +10,7 @@ function OffersAdd({onOffersAddShowModal}) {
 		icon: '+',
 	}
 
-	return <GameTile game={game} onClick={onOffersAddShowModal} />
+	return <div className='offer'><GameTile game={game} onClick={onOffersAddShowModal} /></div>
 }
 
 const mapStateToProps = state => ({})

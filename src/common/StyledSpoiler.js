@@ -34,6 +34,7 @@ const StyledSpoilerButton = styled.button`
 const StyledSpoilerContents = styled.div`
 	display: none;
 	position: absolute;
+	z-index: 1;
 	background-color: inherit;
 	width: 100%;
 	top: 40px;

@@ -78,6 +78,7 @@ button {
 	vertical-align: top;
 	display: inline-block;
 	position: relative;
+	margin: 20px;
 }
 .game-tile {
 	vertical-align: top;
@@ -87,8 +88,16 @@ button {
 }
 .offer-delete {
 	position: absolute;
-	top: 8px;
-	right: 8px;
+	top: -4px;
+	right: 2px;
+	background: none;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 0;
+	margin: 0;
+	font-size: 24px;
+	color: #FDE74C;
 }
 .map-wrapper {
 	display: inline-block;

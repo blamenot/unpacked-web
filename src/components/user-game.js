@@ -12,7 +12,7 @@ function UserGame({gameId, ownerId, authUserId, onOffersDeleteRequest}) {
 		: '')
 	return (
 			<div className="offer">
-				<GameLoader gameId={gameId} Component={GameTile} isBig/>
+				<GameLoader gameId={gameId} Component={GameTile}/>
 				{deleteButton}
 			</div>
 		)

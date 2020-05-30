@@ -13,7 +13,10 @@ const ModalMask = styled.div`
 `
 const ModalBody = styled.div`
 	display: inline-block;
-	margin: 2rem;
+	box-sizing: border-box;
+	padding: 2rem;
+	max-width: 100%;
+	overflow: auto;
 `
 
 function Modal({closeCallback, children}) {

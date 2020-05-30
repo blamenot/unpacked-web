@@ -1,35 +1,31 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import styled from 'styled-components'
 import Modal from '../common/Modal'
 import {offersAddHideModal} from '../actions/offers-add'
 import GameFinderInput from './GameFinderInput'
 import GameFinderOffers from './GameFinderOffers'
 
-const style = {
-	'backgroundColor': 'white',
-	'minHeight': '400px',
-	'width': '700px',
-	'padding': '12px',
-	'textAlign': 'initial'
-}
+const OffersAddContents = styled.div`
+	box-sizing: border-box;
+	width: 280px;
+	min-height: 280px;
+	border: 2px solid #FDE74C;
+	background-color: #13131D;
+`
 
 function OffersAddModal({onOffersAddHideModal}) {
-	const renderCallback = () => (
-		<div style={style}>
-			<h3>Offer a game</h3>
-			<select>
-				<option>PS4</option>
-				<option>XBOX</option>
-			</select>
-			<GameFinderInput />
-			<div>
-				<GameFinderOffers />
-			</div>
-		</div>
-	)
 	
 	return (
-		<Modal renderCallback={renderCallback} closeCallback={onOffersAddHideModal}/>
+		<Modal closeCallback={onOffersAddHideModal}>
+			<OffersAddContents>
+				<h3>Offer a game</h3>
+				<GameFinderInput />
+				<div>
+					<GameFinderOffers />
+				</div>
+			</OffersAddContents>
+		</Modal>
 	)
 }
 

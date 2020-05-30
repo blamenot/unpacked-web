@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 const Tile = styled.div`
 	display: inline-block;
+	position: relative;
 	box-sizing: border-box;
 	flex-shrink: 0;
 	background-color: #154ea3;
