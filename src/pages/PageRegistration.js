@@ -1,34 +1,30 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, Fragment} from 'react'
 import {connect} from 'react-redux'
 import AskAuthenticate from '../components/ask-authenticate'
-import ProfileForm from '../components/profile-form'
-import ProfileControls from '../components/ProfileControls'
+import ProfileForm from '../components/ProfileForm'
+import RegistrationControls from '../components/RegistrationControls'
 import {userUpdateUnsaved} from '../actions/user-update'
-import {PATH_PAGE_PROFILE} from '../constants/paths'
 
-function Registration({history, registeredUser, authData, updatedUser, onProfileUserUnregistered}) {
+function PageRegistration({authData, updatedUser, onProfileUserUnregistered}) {
 	useEffect(() => {
-		if(authData && registeredUser) {
-			history.push(PATH_PAGE_PROFILE.replace(':uid', authData.uid))
-		}
-		if(authData && !updatedUser) { //user authenticated
+		if(authData && !updatedUser) {
+			//Create user object in userCache with name from authdata.displayName
 			onProfileUserUnregistered(authData)
 		}
-	}, [authData, updatedUser, onProfileUserUnregistered, history, registeredUser])
+	}, [authData, updatedUser, onProfileUserUnregistered])
 	if(!authData) {
 		return <AskAuthenticate />
 	} else {
 		return (
-		<div>
+		<Fragment>
 			<ProfileForm userId={authData.uid}/>
-			<ProfileControls userId={authData.uid} isRegistration={true}/>
-		</div>
+			<RegistrationControls userId={authData.uid}/>
+		</Fragment>
 	)
 	}
 }
 
 const mapStateToProps = ({userCache, auth, userUpdate}) => ({
-	registeredUser: auth.authData && userCache.users[auth.authData.uid],
 	authData: auth.authData,
 	updatedUser: userUpdate.user,
 	wait: userCache.userByIdWait || userCache.userUpdateWait
@@ -41,4 +37,4 @@ const mapDispatchToProps = dispatch => ({
 		dispatch(userUpdateUnsaved(userUnregistered))
 	}
 })
-export default connect(mapStateToProps, mapDispatchToProps)(Registration) 
+export default connect(mapStateToProps, mapDispatchToProps)(PageRegistration) 

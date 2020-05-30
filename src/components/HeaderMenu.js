@@ -14,9 +14,9 @@ function HeaderMenu({userId}) {
 				<Link to={PATH_PAGE_SEARCH}>
 					Find games
 				</Link>
-				<Link to={PATH_PAGE_OFFERS.replace(':userId', userId)}>
+				{userId && <Link to={PATH_PAGE_OFFERS.replace(':userId', userId)}>
 					My games
-				</Link>  
+				</Link>}
 				<Link to={PATH_PAGE_CHATS}>
 					Deals
 				</Link>

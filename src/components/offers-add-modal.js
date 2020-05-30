@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import Modal from './modal'
+import Modal from '../common/Modal'
 import {offersAddHideModal} from '../actions/offers-add'
 import GameFinderInput from './GameFinderInput'
 import GameFinderOffers from './GameFinderOffers'

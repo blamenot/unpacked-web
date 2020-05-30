@@ -1,5 +1,5 @@
 import React from 'react'
-import LoginButton from './login-button'
+import LoginButton from './LoginButton'
 
 function AskAuthenticate() {
 	return (

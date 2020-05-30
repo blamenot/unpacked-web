@@ -1,6 +1,22 @@
 import React, {useEffect} from 'react'
-import '../styles/modal.css'
-function Modal({renderCallback, closeCallback}) {
+import styled from 'styled-components'
+
+const ModalMask = styled.div`
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	overflow: auto;
+	background-color: rgba(0, 0, 0, 0.8);
+	text-align: center;
+`
+const ModalBody = styled.div`
+	display: inline-block;
+	margin: 2rem;
+`
+
+function Modal({closeCallback, children}) {
 	//Fix body to prevent background scrolling;
 	useEffect(() => {
 		if(window.scrollY) {
@@ -36,15 +52,15 @@ function Modal({renderCallback, closeCallback}) {
 	 *  if clicked on modal mask tries to close the modal
 	 * @param {Event} e click event
 	 */
-	function modalClick(e) {
+	function maskClick(e) {
 		if(closeCallback && e.target === e.currentTarget) {
 			closeCallback(e)
 		}
 	}
 	return (
-		<div className='modal' onClick={modalClick}>
-			<div className='modal__body'>{renderCallback()}</div>
-		</div>
+		<ModalMask onClick={maskClick}>
+			<ModalBody>{children}</ModalBody>
+		</ModalMask>
 	)
 }
 

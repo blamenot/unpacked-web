@@ -2,6 +2,7 @@ import React, {Fragment} from 'react'
 import styled from 'styled-components'
 import {useRouteMatch} from "react-router-dom"
 import StyledLink from '../common/StyledLink'
+import StyledLabel from '../common/StyledLabel'
 import {
 	PATH_TAB_LIST,
 	PATH_TAB_LOCATION,
@@ -16,11 +17,6 @@ const GameName = styled.h2`
 	padding: 10px 20px;
 	margin: 0;
 	margin-top: 15px;
-`
-const StyledLabel = styled.label`
-	color: #5F606C;
-	font-size: 12px;
-	text-transform: uppercase;
 `
 const Section = styled.section`
 	padding 10px 20px;

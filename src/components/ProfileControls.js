@@ -1,22 +1,18 @@
 import React from 'react'
+import styled from 'styled-components'
 import {connect} from 'react-redux'
-import {
-	userUpdateSaveRequest,
-	userUpdateCreateRequest
-} from '../actions/user-update'
-function ProfileControls({userId, isRegistration = false, updatedUser, onProfileUserSaveRequest, onProfileUserCreateRequest}) {
-	function onSave() {
-		if(isRegistration) {
-			return onProfileUserCreateRequest(userId, updatedUser)
-		}
-		onProfileUserSaveRequest(userId, updatedUser)
-	}
+import {userUpdateSaveRequest} from '../actions/user-update'
+import StyledButton from '../common/StyledButton'
+const ProfileControlsContainer = styled.div`
+	padding: 20px;
+`
+function ProfileControls({userId, updatedUser, userUpdateSaveRequest}) {
 	return (
-		<div>
-			<button onClick={onSave}>
+		<ProfileControlsContainer>
+			<StyledButton onClick={() => userUpdateSaveRequest(userId, updatedUser)} wide>
 				Save
-			</button>
-		</div>
+			</StyledButton>
+		</ProfileControlsContainer>
 	)
 }
 const mapStateToProps = ({userCache, auth, userUpdate}, {userId}) => ({
@@ -25,12 +21,7 @@ const mapStateToProps = ({userCache, auth, userUpdate}, {userId}) => ({
 	isSelf: auth.authData.uid === userId,
 	wait: userCache.userByIdWait || userCache.userUpdateWait
 })
-const mapDispatchToProps = dispatch => ({
-	onProfileUserSaveRequest(userId, updatedUser) {
-		dispatch(userUpdateSaveRequest(userId, updatedUser))
-	},
-	onProfileUserCreateRequest(userId, user) {
-		dispatch(userUpdateCreateRequest(userId, user))
-	}
-})
+const mapDispatchToProps = {
+	userUpdateSaveRequest
+}
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileControls)

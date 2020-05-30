@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux'
 
-import AuthModal from './auth-modal'
-import OffersAddModal from './offers-add-modal'
+import AuthModal from '../components/AuthModal'
+import OffersAddModal from '../components/offers-add-modal'
 
 class Modals extends React.PureComponent {
 	render() {

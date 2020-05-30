@@ -20,7 +20,7 @@ export function userUpdateSaved(user) {
 		payload: {user}
 	}
 }
-//Tunks
+//Thunks
 /**
  * Saves user to database
  * @param {String} userId
