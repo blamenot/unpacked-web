@@ -17,6 +17,9 @@ const ItemContainer = styled.li`
 	cursor: pointer;
 	line-height: 50px;
 	padding: 0 15px;
+	white-space: nowrap;
+	overflow: hidden;
+    text-overflow: ellipsis;
 	&:hover {
 		background-color: grey;
 	}

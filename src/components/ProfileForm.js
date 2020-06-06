@@ -43,7 +43,6 @@ function ProfileForm({updatedUser, userUpdateUnsaved, readonly}) {
 		})
 	}
 	function onLocactionChange(suggestion) {
-		debugger;
 		userUpdateUnsaved({
 			...updatedUser,
 			place: suggestion.display_name,

@@ -56,7 +56,8 @@ function StyledInput({
 	submitLabel = null,
 	icon = null,
 	placeholder = 'type in value',
-	readonly
+	readonly,
+	...inputProps
 }) {
 	return (
 		<StyledInputContainer	onSubmit={e => {
@@ -69,7 +70,8 @@ function StyledInput({
 								value={value}
 								onChange={e => onChange(e.target.value)}
 								placeholder={placeholder}
-								readonly={readonly}/>
+								readonly={readonly}
+								{...inputProps}/>
 			<StyledInputSubmit submitLabel={submitLabel} readonly={readonly}/>
 		</StyledInputContainer>
 	)

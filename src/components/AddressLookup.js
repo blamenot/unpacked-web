@@ -7,7 +7,7 @@ const AddressLookupContainer = styled.div`
 	position: relative;
 `
 async function getSuggestions(phrase) {
-	const query = ('https://nominatim.openstreetmap.org?osm_ids=[N]&format=json&limit=5&q=' 
+	const query = ('https://nominatim.openstreetmap.org?osm_ids=[N]&format=json&limit=5&q=Россия, Москва, ' 
 			+ encodeURI(phrase))
 	try {
 		const response = await fetch(query)
@@ -18,6 +18,9 @@ async function getSuggestions(phrase) {
 	}
 }
 const actualPhrase = {phrase: ''}; //do I need to use memo?
+function onAddressInputFocus(e) {
+	e.target.select()
+} 
 function AddressLookup({onLookup, address = '', readonly}) {
 	const [phrase, setPhrase] = useState(address)
 	const [suggestions, setSuggestions] = useState([])
@@ -47,7 +50,9 @@ function AddressLookup({onLookup, address = '', readonly}) {
 							readonly={readonly}
 							placeholder='Type in address'
 							onChange={setPhrase}
-							submitLabel={<IconSearch/>}/>
+							submitLabel={<IconSearch/>}
+							onFocus={onAddressInputFocus}
+							/>
 			{renderedSuggestions}
 			{error}
 		</AddressLookupContainer>
