@@ -30,7 +30,7 @@ function clauseCacheAddWait() {
 		type: CLAUSE_CACHE_ADD_WAIT
 	}
 }
-function clauseCacheAddError(clauseId, addError) {
+function clauseCacheAddError(addError) {
 	return {
 		type: CLAUSE_CACHE_ADD_ERROR,
 		payload: {addError}
