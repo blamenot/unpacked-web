@@ -38,7 +38,7 @@ function Deal ({
 }
 
 const mapStateToProps = ({clauseCache, gameCache}, {chatId}) => {
-	const chatClausesArray = Object.values(clauseCache.clauses).filter(clause => clause.chatId = chatId)
+	const chatClausesArray = Object.values(clauseCache.clauses).filter(clause => clause.chatId === chatId)
 	const gamesFetchErrors = chatClausesArray.reduce((gamesFetchErrors, clause) => {
 		if(gameCache.gamesByIdError[clause.gameId]) {
 			return [...gamesFetchErrors, gameCache.gamesByIdError[clause.gameId]]

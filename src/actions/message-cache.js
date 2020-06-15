@@ -123,7 +123,9 @@ export function messageCacheSendMessageRequest(chatId, text, authorId, recipient
 		dispatch(messageCacheUpdate(null, {
 			id: messageRef.id,
 			...message,
-			isUpdating: true
+			sendDate: new Date(),
+			updateDate: new Date(),
+			isUpdating: true,
 		}))
 		try {
 			await messageRef.set(message)
