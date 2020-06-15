@@ -9,9 +9,9 @@ import {
 
 const initialState = {
 	messages: [], //Message list for specific chat.
-	messagesFetching: false, //Boolean flag, messages for chat are being fetched.
-	messagesFetched: false,
-	messagesFetchError: null, //Error on fetching chat messages.
+	messagesByChatWait: {},	//Map, key: chatId, value: Boolean is being Fetched
+	messagesByChatFetched: {},	//Map, key: chatId, value: Boolean is Fetched
+	messagesByChatError: {},	//Map, key: chatId, value: Error,
 	messagesUnsubscribe: null //firebase unsubscribe function
 }
 
@@ -19,21 +19,48 @@ export default function(state = initialState, action) {
 	switch(action.type) {
 		case MESSAGE_CACHE_FETCH: return {
 			...state,
-			messages: action.payload.messages,
-			messagesFetchFetching: false,
-			messagesFetched: true
+			messages: [
+				...state.messages,
+				...action.payload.messages
+			],
+			messagesByChatWait: {
+				...state.messagesByChatWait,
+				[action.payload.chatId]: false
+			},
+			messagesByChatFetched: {
+				...state.messagesByChatFetched,
+				[action.payload.chatId]: true
+			},
 		}
 		case MESSAGE_CACHE_FETCH_WAIT: return {
 			...state,
-			messagesFetchFetching: true,
-			messagesFetched: false,
-			messagesFetchError: null,
+			messagesByChatWait: {
+				...state.messagesByChatWait,
+				[action.payload.chatId]: true
+			},
+			messagesByChatFetched: {
+				...state.messagesByChatFetched,
+				[action.payload.chatId]: false
+			},
+			messagesByChatError: {
+				...state.messagesByChatError,
+				[action.payload.chatId]: null
+			}
 		}
 		case MESSAGE_CACHE_FETCH_ERROR: return {
 			...state,
-			messagesFetchFetching: false,
-			messagesFetched: true,
-			messagesFetchError: action.payload.fetchError
+			messagesByChatWait: {
+				...state.messagesByChatWait,
+				[action.payload.chatId]: false
+			},
+			messagesByChatFetched: {
+				...state.messagesByChatFetched,
+				[action.payload.chatId]: true
+			},
+			messagesByChatError: {
+				...state.messagesByChatError,
+				[action.payload.chatId]: action.payload.fetchError
+			}
 		}
 		case MESSAGE_CACHE_UPDATE: {
 			const messageIndex = (action.payload.outdatedMessageId

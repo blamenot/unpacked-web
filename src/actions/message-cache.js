@@ -11,24 +11,29 @@ import {
 import {COLLECTION_MESSAGES} from '../constants/collection-names'
 import {chatCacheFetchLastMessage} from './chat-cache'
 //Actions
-function messageCacheFetch(messages) {
+function messageCacheFetch(messages, chatId) {
 	return {
 		type: MESSAGE_CACHE_FETCH,
 		payload: {
-			messages
+			messages,
+			chatId,
 		}
 	}
 }
-function messageCacheFetchWait() {
+function messageCacheFetchWait(chatId) {
 	return {
-		type: MESSAGE_CACHE_FETCH_WAIT
+		type: MESSAGE_CACHE_FETCH_WAIT,
+		payload: {
+			chatId,
+		}
 	}
 }
-function messageCacheFetchError(fetchError) {
+function messageCacheFetchError(fetchError, chatId) {
 	return {
 		type: MESSAGE_CACHE_FETCH_ERROR,
 		payload: {
-			fetchError
+			fetchError,
+			chatId
 		}
 	}
 }
@@ -77,7 +82,7 @@ export function messageCacheFetchRequest(chatId) {
 			.where('chatId','==', chatId)
 			.orderBy('sendDate')
 			.limit(100)
-		dispatch(messageCacheFetchWait())
+		dispatch(messageCacheFetchWait(chatId))
 		try {
 			const queyrSnapshot = await  query.get()
 			const messages = queyrSnapshot.docs.map(doc => {
@@ -90,9 +95,9 @@ export function messageCacheFetchRequest(chatId) {
 					isUpdating: doc.metadata.hasPendingWrites
 				}
 			})
-			dispatch(messageCacheFetch(messages))
+			dispatch(messageCacheFetch(messages, chatId))
 		} catch(fetchError) {
-			dispatch(messageCacheFetchError(fetchError))
+			dispatch(messageCacheFetchError(fetchError, chatId))
 			throw fetchError
 		}
 	}

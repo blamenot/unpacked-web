@@ -6,6 +6,7 @@ import StyledButton from '../common/StyledButton'
 import GameLoader from '../containers/GameLoader'
 import GameTile from './GameTile'
 import {
+	CLAUSE_STATUS_SUGGESTED,
 	CLAUSE_STATUS_REJECTED,
 	CLAUSE_STATUS_ACCEPTED
 } from '../constants/clause-statuses'
@@ -44,7 +45,7 @@ const ClauseGamePlatform = styled.p`
 	padding: 0;
 `
 function ClauseControls({userId, clause, acceptClause, rejectClause}) {
-	if(clause.respondentId === userId && clause.status !== CLAUSE_STATUS_ACCEPTED) {
+	if(clause.respondentId === userId && clause.status === CLAUSE_STATUS_SUGGESTED) {
 		return (
 			<ClauseControlsContainer>
 				<StyledButton onClick={acceptClause}>Accept</StyledButton>
@@ -52,11 +53,14 @@ function ClauseControls({userId, clause, acceptClause, rejectClause}) {
 			</ClauseControlsContainer>
 		)
 	}
-	return (
-		<ClauseControlsContainer>
-			<StyledButton onClick={rejectClause} reject>Reject</StyledButton>
-		</ClauseControlsContainer>
-	)
+	if(clause.status === CLAUSE_STATUS_ACCEPTED || clause.status === CLAUSE_STATUS_SUGGESTED) {
+		return (
+			<ClauseControlsContainer>
+				<StyledButton onClick={rejectClause} reject>Reject</StyledButton>
+			</ClauseControlsContainer>
+		)
+	}
+	return null
 }
 function ClauseGame({gameId, game}) {
 	return (
@@ -69,7 +73,12 @@ function ClauseGame({gameId, game}) {
 		</ClauseGameContainer>
 	)
 }
-
+function ClausePrompt({clause, userId}) {
+	if(clause.ownerId === userId) {
+		return <ClauseMessage>Asks for</ClauseMessage>
+	}
+	return <ClauseMessage>Offers</ClauseMessage>
+}
 function Clause ({clause, userId, user, acceptClause, rejectClause}) {
 	if(!user) {
 		return <ClauseContainer>Loading... {JSON.stringify(clause)}</ClauseContainer>
@@ -79,7 +88,7 @@ function Clause ({clause, userId, user, acceptClause, rejectClause}) {
 				<ClauseBody>
 					<Avatar pic={user.pic} name={user.name}/>
 					<ClauseDescription>
-						<ClauseMessage>Is offering to you:</ClauseMessage>
+						<ClausePrompt clause={clause} userId={userId}/>
 						<GameLoader gameId={clause.gameId} Component={ClauseGame}/>
 					</ClauseDescription>
 				</ClauseBody>
@@ -92,7 +101,7 @@ function Clause ({clause, userId, user, acceptClause, rejectClause}) {
 }
 
 const mapStateToProps = ({auth, userCache}, {clause}) => ({
-	user: userCache.users[clause.ownerId],
+	user: userCache.users[clause.suggesterId],
 	userId: auth.authData && auth.authData.uid
 })
 const mapDispatchToProps = (dispatch, {clauseId, clause}) => ({

@@ -55,7 +55,7 @@ function PageChat ({
 								onClick={() => setDealToggled(!dealToggled)}>
 					<Deal chatId={chatId} />
 				</StyledSpoiler>
-				<MessageList chatId={chatId}/>
+				<MessageList chatId={chatId} masked={dealToggled}/>
 			</ChatContainer>
 			<MessageInput chatId={chatId} recipientId={companionId}/>
 		</Fragment>
