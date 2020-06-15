@@ -7,9 +7,23 @@ import {clauseCacheFetchActiveByChatRequest} from '../actions/clause-cache'
 const MessageListContainer = styled.div`
 	height: calc(100vh - 230px);
 	overflow: auto;
+	position: relative;
+	${({masked}) => masked && `
+		::after {
+			content: '';
+			position: absolute;
+			background-color: #13131D;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			opacity: 0.8;
+		}
+	`}
 `
 function MessageList ({
 		chatId,
+		masked,
 		messagesFetched,
 		messagesFetching,
 		messages,
@@ -33,18 +47,18 @@ function MessageList ({
 		}
 	}, [chatId, clausesFetched, clausesFetching, onClauseFetch])
 
-	if(!clausesFetched && !clausesFetched) {
+	if(!clausesFetched || !clausesFetched) {
 		return <div>wait...</div>
 	}
 	return (
-		<MessageListContainer>
-			<MessageListBody messages={messages} clauses={clauses}/>
+		<MessageListContainer masked={masked}>
+			<MessageListBody messages={messages} clauses={clauses} chatId={chatId}/>
 		</MessageListContainer>
 	)
 }
 const mapStateToProps = ({messageCache, clauseCache}, {chatId}) => ({
-	messagesFetched: messageCache.messagesFetched,
-	messagesFetching: messageCache.messagesFetching,
+	messagesFetched: messageCache.messagesByChatFetched[chatId],
+	messagesFetching: messageCache.messagesByChatWait[chatId],
 	messages: messageCache.messages,
 	clausesFetched: clauseCache.clausesByChatFetched[chatId],
 	clausesFetching: clauseCache.clausesByChatWait[chatId],
