@@ -104,18 +104,12 @@ const mapStateToProps = ({auth, userCache}, {clause}) => ({
 	user: userCache.users[clause.suggesterId],
 	userId: auth.authData && auth.authData.uid
 })
-const mapDispatchToProps = (dispatch, {clauseId, clause}) => ({
+const mapDispatchToProps = (dispatch, {clauseId}) => ({
 	acceptClause() {
-		dispatch(clauseCacheUpdateStatusRequest(clauseId, {
-			...clause,
-			status: CLAUSE_STATUS_ACCEPTED
-		}))
+		dispatch(clauseCacheUpdateStatusRequest(clauseId, CLAUSE_STATUS_ACCEPTED))
 	},
 	rejectClause() {
-		dispatch(clauseCacheUpdateStatusRequest(clauseId, {
-			...clause,
-			status: CLAUSE_STATUS_REJECTED
-		}))
+		dispatch(clauseCacheUpdateStatusRequest(clauseId, CLAUSE_STATUS_REJECTED))
 	}
 })
 

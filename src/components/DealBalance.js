@@ -12,13 +12,13 @@ function DealBalance ({chatClausesArray, games, userId}) {
 	const evaluatedBalance = getBalance(chatClausesArray, games, userId, CLAUSE_STATUS_ACCEPTED)
 	return (
 		<DealBalanceContainer>
-			{getBalanceStatus(evaluatedBalance)}: {Math.abs(evaluatedBalance)}
+			{getBalanceStatus(evaluatedBalance)}{evaluatedBalance ? `: ${Math.abs(evaluatedBalance)} ₽` : ''}
 		</DealBalanceContainer>
 	)
 }
 function getBalanceStatus(evaluatedBalance) {
 	if(evaluatedBalance === 0) {
-		return null;
+		return 'No games submitted'
 	} 
 	if(evaluatedBalance > 0) {
 		return 'You receive'
@@ -32,8 +32,6 @@ function getBalance(clausesArray, games, userId, clauseStatus) {
 		if(clause.status !== clauseStatus) {
 			return balance
 		}
-		//TODO IMPORTANT, send error to server money evaluation!
-		//must contain all games
 		const gamePrice = +(games[clause.gameId].unpackedPrice)
 		if(userId === clause.ownerId) {
 			return balance + gamePrice
@@ -46,7 +44,6 @@ const mapStateToProps = ({auth, gameCache}) => ({
 	userId: auth.authData && auth.authData.uid,
 	games: gameCache.games
 })
-const mapDispatchToProps = dispatch => ({
-})
 
-export default connect(mapStateToProps, mapDispatchToProps)(DealBalance)
+
+export default connect(mapStateToProps)(DealBalance)

@@ -2,6 +2,7 @@ import React, {useEffect} from 'react'
 import {connect} from 'react-redux'
 import DealBalance from './DealBalance'
 import DealClauses from './DealClauses'
+import DealCloser from './DealCloser'
 import {gameCacheFetchMissingGamesRequest} from '../actions/game-cache'
 function Deal ({
 	chatId,
@@ -33,6 +34,7 @@ function Deal ({
 		<div>
 			<DealClauses chatId={chatId}/>
 			<DealBalance chatClausesArray={chatClausesArray}/>
+			<DealCloser chatClausesArray={chatClausesArray} chatId={chatId}/>
 		</div>
 	)
 }

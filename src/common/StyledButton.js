@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from "styled-components";
 
 const StyledButton = styled.button`
@@ -9,14 +8,15 @@ const StyledButton = styled.button`
 		border-color: #AD2031;
 		color: #AD2031;
 	`}
+	${({disabled}) => disabled && `
+		border-color: #5F606C;
+		color: #5F606C;
+	`}
 	font-weight: bold;
 	background: none;
 	line-height: 46px;
 	${props => props.wide && 'width: 100%;'};
 	flex-grow: 1;
-	cursor: pointer;
 	padding: 0;
 `
-export default function ({ children, ...props}) {
-	return <StyledButton{...props}>{children}</StyledButton>
-}
+export default StyledButton
