@@ -91,7 +91,10 @@ export default function(state = initialState, action) {
 			...state,
 			clauses: {
 				...state.clauses,
-				[action.payload.clauseId]: action.payload.clause
+				[action.payload.clauseId]: {
+					...state.clauses[action.payload.clauseId],
+					...action.payload.clauseUpdate,
+				}
 			},
 			clausesUpdateWait: false
 		}

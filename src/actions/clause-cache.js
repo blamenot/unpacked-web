@@ -57,12 +57,12 @@ function clauseCacheErrorByChat(chatId, clausesByChatError) {
 		}
 	}
 }
-function clauseCacheUpdate(clauseId, clause) {
+function clauseCacheUpdate(clauseId, clauseUpdate) {
 	return {
 		type: CLAUSE_CACHE_UPDATE_STATUS,
 		payload: {
 			clauseId,
-			clause
+			clauseUpdate
 		}
 	}
 }
@@ -149,20 +149,32 @@ export function clauseCacheFetchActiveByChatRequest(chatId) {
  * @param clauseId {String}
  * @param clause {Object} updated clause
  */
-export function clauseCacheUpdateStatusRequest(clauseId, clause) {
+export function clauseCacheUpdateStatusRequest(clauseId, targetStatus) {
 	return async dispatch => {
 		const ref = firebase.firestore().collection(COLLECTION_CLAUSES)
 			.doc(clauseId)
 		dispatch(clauseCacheUpdateWait())
 		try {
 			await ref.update({
-				status: clause.status,
+				status: targetStatus,
 				updateDate: firebase.firestore.FieldValue.serverTimestamp()
 			})
-			dispatch(clauseCacheUpdate(clauseId, clause))
+			dispatch(clauseCacheUpdate(clauseId, {status: targetStatus, updateDate: new Date()}))
 		} catch(updateError) {
 			dispatch(clauseCacheUpdateError(updateError))
 		}
-
+	}
+}
+/**
+ * Bulk status change for clauses.
+ * Changes all clauses in chat with specified status.
+ * @param clauseIds {array}
+ * @param targetStatus {string}
+ */
+export function clauseCacheBulkStatusUpdateRequest(clauseIds, targetStatus) {
+	const statusUpdateThunks = clauseIds.map(clauseId => clauseCacheUpdateStatusRequest(clauseId, targetStatus))
+	return  dispatch => {
+		const statusUppdates = statusUpdateThunks.map(statusUpdateThunk => statusUpdateThunk(dispatch))
+		return Promise.all[statusUppdates]
 	}
 }
