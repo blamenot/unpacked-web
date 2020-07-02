@@ -2,7 +2,7 @@
   "name": "unpacked-dev",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://blamenot.github.io/unpacked-dev",
+  "homepage": "https://unpacked-dev.web.app",
   "dependencies": {
     "firebase": "^7.14.5",
     "firebaseui": "^4.5.0",
