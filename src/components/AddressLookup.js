@@ -7,12 +7,11 @@ const AddressLookupContainer = styled.div`
 	position: relative;
 `
 async function getSuggestions(phrase) {
-	const query = ('https://nominatim.openstreetmap.org?osm_ids=[N]&format=json&limit=5&q=Россия, Москва, ' 
-			+ encodeURI(phrase))
+	const query = `https://api.maptiler.com/geocoding/${encodeURI(phrase)}.json?key=CJgU0YXneoFmW9PKNHt5&proximity=37.6255034,55.7243808`
 	try {
 		const response = await fetch(query)
-		const suggestions = await response.json()
-		return [suggestions, phrase, null]
+		const {features} = await response.json()
+		return [features, phrase, null]
 	} catch(error) {
 		return [[], phrase, error]
 	}
@@ -24,20 +23,19 @@ function onAddressInputFocus(e) {
 function AddressLookup({onLookup, address = '', readonly}) {
 	const [phrase, setPhrase] = useState(address)
 	const [suggestions, setSuggestions] = useState([])
-	const [error, setError] = useState(null)
 	async function showSuggestions(phrase) {
 		setSuggestions(null)
 		actualPhrase.phrase = phrase
 		const [fetchedSuggestions, fetchedPhrase, error] = await getSuggestions(phrase)
 		if(fetchedPhrase === actualPhrase.phrase) {
 			setSuggestions(fetchedSuggestions)
-			setError(error)
+			error && console.error(error)
 		}
 	}
 	function onSelect(suggestion) {
 		setSuggestions(null)
 		if (suggestion) {
-			setPhrase(suggestion.display_name)
+			setPhrase(suggestion.place_name)
 			onLookup(suggestion)
 		}
 	}
@@ -54,7 +52,6 @@ function AddressLookup({onLookup, address = '', readonly}) {
 							onFocus={onAddressInputFocus}
 							/>
 			{renderedSuggestions}
-			{error}
 		</AddressLookupContainer>
 	)
 }
