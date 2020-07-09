@@ -82,6 +82,7 @@ function chatCacheErrorById(chatId, fetchError) {
  * @param {String} participantId user id of any participant in chat
  */
 export function chatCacheFetchByParticipantRequest(participantId) {
+	//participantId = '1AdcWdetXOb9i2qYYhAQEA6evi33' BUG if partibipantId not authenticated user, infinit loop
 	return async dispatch => {
 		//TODO triggered multiple times
 		const query = firebase.firestore().collection(COLLECTION_CHATS)
