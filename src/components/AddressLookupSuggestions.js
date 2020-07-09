@@ -5,7 +5,7 @@ const ListContainer = styled.ul`
 	background-color: #13131D;
 	width: 100%;
 	color: white;
-	opacity: .9;
+	opacity: .95;
 	z-index: 1;
 	list-style: none;
 	margin: 0;
@@ -15,14 +15,20 @@ const ListContainer = styled.ul`
 `
 const ItemContainer = styled.li`
 	cursor: pointer;
-	line-height: 50px;
-	padding: 0 15px;
+	padding: 15px;
 	white-space: nowrap;
 	overflow: hidden;
     text-overflow: ellipsis;
 	&:hover {
 		background-color: grey;
 	}
+`
+const ItemSubText = styled.div`
+	text-transform: none;
+	font-size: 12px;
+	color: #5F606C;
+	overflow: hidden;
+    text-overflow: ellipsis;
 `
 function AddressLookupSuggestions({suggestions, onSelect}) {
 	useEffect(() => {
@@ -33,10 +39,13 @@ function AddressLookupSuggestions({suggestions, onSelect}) {
 		return () => window.removeEventListener('click', closeSuggestions)
 	},[onSelect])
 	const addressLookupSuggestions = suggestions.map( suggestion => (
-		<ItemContainer	key={suggestion.place_id} 
+		<ItemContainer	key={suggestion.id} 
 						suggestion={suggestion}
 						onClick={() => onSelect(suggestion)}
-		>{suggestion.display_name}</ItemContainer>
+		>
+			{suggestion.text}
+			<ItemSubText>{suggestion.place_name}</ItemSubText>
+		</ItemContainer>
 	))
 	return (
 		<ListContainer>

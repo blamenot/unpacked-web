@@ -56,8 +56,8 @@ function MapPane({points, style}) {
 			boundsOptions={{padding: [10, 10]}}
 		>
 			<TileLayer
-			attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-			url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+			attribution='<a href="https://www.maptiler.com/copyright" target="_blank">© MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">© OpenStreetMap contributors</a>'
+			url="https://api.maptiler.com/maps/basic/{z}/{x}/{y}.png?key=CJgU0YXneoFmW9PKNHt5"
 			/>
 			<MapMarkers points={points} />
 		</LeafletMap>

@@ -45,9 +45,9 @@ function ProfileForm({updatedUser, userUpdateUnsaved, readonly}) {
 	function onLocactionChange(suggestion) {
 		userUpdateUnsaved({
 			...updatedUser,
-			place: suggestion.display_name,
-			latitude: +suggestion.lat,
-			longitude: +suggestion.lon,
+			place: suggestion.place_name,
+			latitude: +suggestion.center[1],
+			longitude: +suggestion.center[0],
 		})
 	}
 
