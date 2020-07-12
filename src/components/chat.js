@@ -31,7 +31,6 @@ function Chat ({chatId, chat, userId, lastMessage, companionId, companion, fetch
 		}
 	})
 	const path = PATH_PAGE_CHAT.replace(':chatId', chatId)
-	const briefText = lastMessage && lastMessage.text //TODO kill it for now
 	return (
 		<Link to={path}>
 			<ChatContainer>

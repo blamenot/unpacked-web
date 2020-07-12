@@ -18,6 +18,10 @@ const GameName = styled.h2`
 	margin: 0;
 	margin-top: 15px;
 `
+const GamePrice = styled.div`
+	font-size: 24px;
+	font-weight: bold;
+`
 const Section = styled.section`
 	padding 10px 20px;
 	font-size: 12px;
@@ -33,6 +37,9 @@ function GameInfoDescription({game}) {
 			<Section>
 				<StyledLabel>Platform: </StyledLabel>
 				{game.platform}
+			</Section>
+			<Section>
+				<GamePrice>{game.unpackedPrice} rub.</GamePrice>
 			</Section>
 			{!!game.generes?.length && (
 				<Section>
