@@ -34,7 +34,6 @@ const ClauseGameContainer = styled.div`
 `
 const ClauseGameInfo = styled.div`
 	padding-left: 10px;
-	line-height: 41px;
 `
 const ClauseGameName = styled.h4`
 	margin: 0;
@@ -43,6 +42,12 @@ const ClauseGameName = styled.h4`
 const ClauseGamePlatform = styled.p`
 	margin:0;
 	padding: 0;
+	color: #5F606C;
+`
+const ClauseGamePrice= styled.p`
+	margin:0;
+	padding: 0;
+	padding-top: 20px;
 `
 function ClauseControls({userId, clause, acceptClause, rejectClause}) {
 	if(clause.respondentId === userId && clause.status === CLAUSE_STATUS_SUGGESTED) {
@@ -69,6 +74,7 @@ function ClauseGame({gameId, game}) {
 			<ClauseGameInfo>
 				<ClauseGameName>{game.name}</ClauseGameName>
 				<ClauseGamePlatform>{game.platform}</ClauseGamePlatform>
+				<ClauseGamePrice>{game.unpackedPrice} rub.</ClauseGamePrice>
 			</ClauseGameInfo>
 		</ClauseGameContainer>
 	)

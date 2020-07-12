@@ -6,6 +6,7 @@ import GameLoader from '../containers/GameLoader'
 import GameTile from './GameTile'
 import OffersCounter from './OffersCounter'
 const GameFinderResultContainer = styled.div`
+	text-transform: none;
 	border: 1px solid #5F606C;
 	height: 88px;
 	margin: 10px 0;
@@ -14,14 +15,17 @@ const GameFinderResultContainer = styled.div`
 `
 const GameInfo = styled.div`
 	display: flex;
+	height: 100%;
 	flex-direction: column;
-	flex-grow: 1;
+	justify-content: space-between;
 	color: #5F606C;
 	padding-left: 20px;
 `
 const GameInfoName = styled.div`
 	color: white;
-	flex-grow: 1;
+`
+const GamePrice = styled.div`
+	color: white;
 `
 function GameRow({gameId, game}) {
 	return (
@@ -30,6 +34,7 @@ function GameRow({gameId, game}) {
 			<GameInfo>
 				<GameInfoName>{game.name}</GameInfoName>
 				<div>{game.platform}</div>
+				<GamePrice>{game.unpackedPrice} rub.</GamePrice>
 				<div>Offers found: <OffersCounter gameId={gameId}/></div>
 			</GameInfo>
 		</Fragment>

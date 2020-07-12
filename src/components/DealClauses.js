@@ -20,7 +20,6 @@ const mapStateToProps = ({clauseCache}, {chatId}) => {
 			chatClauses[clauseId] = clauseCache.clauses[clauseId]
 		}
 	}
-	//TODO check why this mapStateToProps evaluated multiple times
 	return {
 		chatClauses
 	}

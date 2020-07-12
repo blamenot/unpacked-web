@@ -14,10 +14,6 @@ const DealCloserWrapper = styled.div`
 	border-bottom: 1px solid #454651; 
 	
 `
-const DealCloserControls= styled.div`
-	display: flex;
-	margin: 0 -10px
-`
 function DealCloser({
 	acceptedChatClauseIds,
 	suggestedChatClauseIds,
