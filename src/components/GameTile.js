@@ -33,6 +33,7 @@ const GameIcon = styled.div`
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	font-size: 40px;
 	transform: translate(-50%, -50%);
 `
 function GameTile({game, isBig, onClick}) {

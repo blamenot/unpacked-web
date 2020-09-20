@@ -36,10 +36,14 @@ export function userUpdateSaveRequest(userId, updatedUser) {
  * Creates user to database
  * @param {String} userId
  * @param {Object} user
+ * @param {Function} callback
  */
-export function userUpdateCreateRequest(userId, user) {
+export function userUpdateCreateRequest(userId, user, callback) {
 	return dispatch => {
-		const successCallback = user => dispatch(userUpdateSaved(user))
+		const successCallback = user => {
+			dispatch(userUpdateSaved(user))
+			callback && callback()
+		}
 		dispatch(userCacheUserCreate(userId, user, successCallback))
 	}
 }

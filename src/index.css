@@ -36,6 +36,10 @@ button {
 	text-transform: uppercase;
 	font-family: 'Montserrat', sans-serif;
 }
+small {
+	text-transform: lowercase;
+	font-size: 12px;
+}
 /*Override default leaflet syles*/
 .point-popup .leaflet-popup-content-wrapper{
 	background-color: #13131D;
@@ -79,6 +83,7 @@ button {
 	display: inline-block;
 	position: relative;
 	margin: 20px;
+	cursor: pointer;
 }
 .game-tile {
 	vertical-align: top;
