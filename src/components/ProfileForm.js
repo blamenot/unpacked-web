@@ -11,7 +11,7 @@ import AddressLookup  from './AddressLookup'
 const MapContainer = styled.div`
 	position: relative;
 	height: 250px;
-
+	padding-bottom: 16px;
 `
 const ProfileFormContainer = styled.div`
 	padding: 0 20px;
@@ -57,18 +57,30 @@ function ProfileForm({updatedUser, userUpdateUnsaved, readonly}) {
 	return (
 		<ProfileFormContainer>
 			<StyledLabel>
-				Nickame:
+				Nickame
 				<StyledInput	value={updatedUser.name || ''}
 								onChange={onNameChange}
 								readonly={readonly}/>
 			</StyledLabel>
 			<StyledLabel>Address
+				{ !readonly && (
+					<div>
+						<small>Please, let us know where it is convenient for you to exchange games</small>
+					</div>
+				)}
 				<AddressLookup address={updatedUser.place} onLookup={onLocactionChange}/>
 			</StyledLabel>
 			<MapContainer>
 				<Map points={[{id:0, position, contents}]}/>
 			</MapContainer>
-			<StyledLabel>Platform:</StyledLabel>
+			<StyledLabel>
+				Your platforms
+				{ !readonly && (
+					<div>
+						<small>Currently only PS4 is supported, but you can uncheck it if you want...</small>
+					</div>
+				)}
+			</StyledLabel>
 			<div>
 				<StyledLabel bright>
 					<StyledCheckbox	checked={checkHasPlatform(updatedUser, PS4)}

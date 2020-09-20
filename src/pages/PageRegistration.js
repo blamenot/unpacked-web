@@ -1,5 +1,6 @@
 import React, {useEffect, Fragment} from 'react'
 import {connect} from 'react-redux'
+import {PS4} from '../constants/platform-types'
 import AskAuthenticate from '../components/ask-authenticate'
 import ProfileForm from '../components/ProfileForm'
 import RegistrationControls from '../components/RegistrationControls'
@@ -32,7 +33,8 @@ const mapStateToProps = ({userCache, auth, userUpdate}) => ({
 const mapDispatchToProps = dispatch => ({
 	onProfileUserUnregistered(authData) {
 		const userUnregistered = {
-			name: authData.displayName
+			name: authData.displayName,
+			platforms: [PS4],
 		}
 		dispatch(userUpdateUnsaved(userUnregistered))
 	}
