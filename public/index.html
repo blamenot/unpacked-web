@@ -25,7 +25,32 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+	<div id="root"></div>
+	<div id="mainpage">
+		<h1>Buy used games</h1>
+		<p>Unpacked helps people to find games at lower cost.</p>
+		<h1>Sell games to community members</h1>
+		<p>
+			You have games that you already finished, don't like, or don't have time to play?
+			Only thing this disks do is take place on your shelf.
+			You can always submit them as offer on our resouce, it's always your choice weather to submit the deal or refuse.
+		</p>
+		<h1>Exchange your games</h1>
+		<p>
+			Think about a good friend who just finished game you desire to play.
+			And it happened that you have a disk you don't need, but your friend is going to buy in store, would you exchange?
+			Now imagine you have thousands of such friends, would you need to go to store more than one time?
+		</p>
+	</div>
+	<script>
+		window.mainPageEl = document.getElementById('mainpage')
+		window.rootEl = document.getElementById('root');
+		if(window.location.pathname === '/') {
+			window.rootEl.setAttribute('style', 'min-height: auto;')
+		} else {
+			window.mainPageEl.setAttribute('style', 'display: none;')
+		}
+	</script>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

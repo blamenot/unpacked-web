@@ -12,6 +12,7 @@ import Modals from './containers/Modals'
 import SubscriptionMessages from './components/subscription-messages'
 
 //pages components
+import PageMain from './pages/PageMain'
 import PageSearch from './pages/PageSearch'
 import PageOffers from './pages/PageOffers'
 import PageProfile from './pages/PageProfile'
@@ -46,7 +47,7 @@ export default function() {
 				<BrowserRouter>
 					<Route component={Header} />
 						<Switch>
-							<Route exact path="/" component={PageOffers} />
+							<Route exact path="/" component={PageMain} />
 							<Route exact path={PATH_PAGE_SEARCH} component={PageSearch} />
 							<Route exact path={PATH_PAGE_OFFERS} component={PageOffers} />
 							<Route exact path={PATH_PAGE_PROFILE} component={PageProfile} />
