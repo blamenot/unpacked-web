@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import HeaderMenu from './HeaderMenu'
 import HeaderPage from './HeaderPage'
 import Burger from './Burger'
+import Logo from '../common/Logo'
 const HeaderContainer = styled.header`
 	display: flex;
 	justify-content: space-between;
@@ -11,6 +12,8 @@ const HeaderContainer = styled.header`
 const HeaderLogo = styled.div`
 	line-height: 50px;
 	width: 60px;
+	text-align: center;
+	padding-top: 7px;
 `
 const MenuContainer = styled.div`
 	display: flex;
@@ -63,7 +66,9 @@ function Header() {
 	}
 	return (
 		<HeaderContainer>
-			<HeaderLogo>U-D</HeaderLogo>
+			<HeaderLogo>
+				<Logo color={'white'}/>
+			</HeaderLogo>
 			<MenuContainer isToggled={isToggled}>
 				<HeaderMenu/>
 			</MenuContainer>
