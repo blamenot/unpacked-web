@@ -64,7 +64,16 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/ad
 
 ### Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+```bash
+npm run build
+firebase deploy --only hosting
+```
+
+to configure firebase hosting please visit:
+https://firebase.google.com/docs/hosting/quickstart
+
+**+Strandard deployment options for Create React App**
+https://firebase.google.com/docs/cli#install_the_firebase_cli
 
 ### `npm run build` fails to minify
 
