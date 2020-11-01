@@ -16,6 +16,17 @@ const MapContainer = styled.div`
 const ProfileFormContainer = styled.div`
 	padding: 0 20px;
 `
+export function getValidationErrors(updatedUser) {
+	let errors = [];
+	if(!updatedUser.name) {
+		errors.push('Empty name supplied, please fill.')
+	}
+	if(!updatedUser.latitude || !updatedUser.longitude || !updatedUser.place) {
+		errors.push('Incorrect address , make sure you put in the address, performed search and picked right suggestion.')
+	}
+	return errors
+}
+
 function checkHasPlatform(updatedUser, platformType) {
 	return updatedUser?.platforms?.indexOf(platformType) >= 0
 }

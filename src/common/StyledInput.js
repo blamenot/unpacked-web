@@ -35,6 +35,10 @@ const StyledInputButton = styled.button`
 	background-color: #FDE74C;
 	border: none;
 `
+const StyledInputPending = styled.span`
+	padding-right: 15px;
+	margin-left -22px;
+`
 function StyledInputIcon({icon}) {
 	if(!icon) {
 		return null
@@ -57,6 +61,7 @@ function StyledInput({
 	icon = null,
 	placeholder = 'type in value',
 	readonly,
+	isPending,
 	...inputProps
 }) {
 	return (
@@ -72,6 +77,7 @@ function StyledInput({
 								placeholder={placeholder}
 								readonly={readonly}
 								{...inputProps}/>
+			{isPending && <StyledInputPending>...</StyledInputPending>}
 			<StyledInputSubmit submitLabel={submitLabel} readonly={readonly}/>
 		</StyledInputContainer>
 	)

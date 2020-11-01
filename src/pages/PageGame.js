@@ -37,7 +37,7 @@ function getUsersWithOffer(users, gameId, authUserId) {
 	let usersWithOffer = {}
 	for(let userId in users) {
 		if(
-			users[userId].offerIds 
+			users[userId]?.offerIds 
 			&& users[userId].offerIds.indexOf(gameId) >= 0
 			&& userId !== authUserId
 		) {

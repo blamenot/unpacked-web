@@ -14,23 +14,20 @@ const ListContainer = styled.ul`
 	left: -20px;
 `
 const ItemContainer = styled.li`
-	cursor: pointer;
 	padding: 15px;
 	white-space: nowrap;
 	overflow: hidden;
-    text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	cursor: default;
+`
+const SelectableItemContainer = styled(ItemContainer)`
+	cursor: pointer;
 	&:hover {
 		background-color: grey;
 	}
 `
-const ItemSubText = styled.div`
-	text-transform: none;
-	font-size: 12px;
-	color: #5F606C;
-	overflow: hidden;
-    text-overflow: ellipsis;
-`
-function AddressLookupSuggestions({suggestions, onSelect}) {
+
+function AddressLookupSuggestions({suggestions, onSelect, error}) {
 	useEffect(() => {
 		function closeSuggestions() {
 			onSelect(null)
@@ -38,18 +35,20 @@ function AddressLookupSuggestions({suggestions, onSelect}) {
 		window.addEventListener('click', closeSuggestions)
 		return () => window.removeEventListener('click', closeSuggestions)
 	},[onSelect])
-	const addressLookupSuggestions = suggestions.map( suggestion => (
-		<ItemContainer	key={suggestion.id} 
+	const addressLookupSuggestions = suggestions && suggestions.map( suggestion => (
+		<SelectableItemContainer	key={suggestion.id} 
 						suggestion={suggestion}
 						onClick={() => onSelect(suggestion)}
 		>
-			{suggestion.text}
-			<ItemSubText>{suggestion.place_name}</ItemSubText>
-		</ItemContainer>
+			{suggestion.place_name}
+		</SelectableItemContainer>
 	))
+
 	return (
 		<ListContainer>
+			{!!error && <ItemContainer>{'Search failed: ' + error}</ItemContainer>}
 			{addressLookupSuggestions}
+			{!suggestions?.length && !error && <ItemContainer>Not found</ItemContainer>}
 		</ListContainer>
 	)
 }
