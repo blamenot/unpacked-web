@@ -67,7 +67,7 @@ function Header() {
 	return (
 		<HeaderContainer>
 			<HeaderLogo>
-				<Logo color={'white'}/>
+				<Logo />
 			</HeaderLogo>
 			<MenuContainer isToggled={isToggled}>
 				<HeaderMenu/>
