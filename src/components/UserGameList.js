@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from "react-router-dom"
 import {PATH_PAGE_SEARCH} from '../constants/paths'
-import UserGame from './user-game'
+import UserGame from './UserGame'
 import styled from 'styled-components'
 
 const UserGameListEmpty = styled.p`
@@ -15,7 +15,7 @@ const UserGameListSearchLink = styled(Link)`
 `
 
 function UserGameList({gameIds, ownerId, isSelf}) {
-	if(!gameIds || Object.values(gameIds) === 0) {
+	if(!gameIds || Object.values(gameIds).length === 0) {
 		if(isSelf) {
 			return (<UserGameListEmpty>
 					Please add games you would like to sell/exchange or <UserGameListSearchLink to={PATH_PAGE_SEARCH}>search other member's games</UserGameListSearchLink>

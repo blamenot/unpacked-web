@@ -1,9 +1,14 @@
 import React, {useEffect} from 'react'
+import styled from 'styled-components'
 import { connect } from 'react-redux'
 import {userCacheFetchUserByIdRequest} from '../actions/user-cache' 
 import {PATH_PAGE_OFFERS} from '../constants/paths'
 import OffersAdd from '../components/OffersAdd'
-import UserGameList from '../components/user-game-list'
+import UserGameList from '../components/UserGameList'
+
+const Contents = styled.div`
+  font-size: 0;
+`
 
 function PageOffers({history, match, authData, wait, user, onUserCacheFetchUserByIdRequest}) {
 	useEffect(() => {
@@ -19,10 +24,10 @@ function PageOffers({history, match, authData, wait, user, onUserCacheFetchUserB
 	} else if (user) {
 		const isSelf = match.params.userId === authData?.uid
 		return (
-			<div>
+			<Contents>
 				{isSelf && <OffersAdd />}
 				<UserGameList gameIds={user.offerIds} ownerId={match.params.userId}/>
-			</div>
+			</Contents>
 		)
 	} else {
 		return false
