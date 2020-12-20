@@ -9,10 +9,11 @@ const Tile = styled.div`
 	border #3b64b1 solid 2px;
 	border-radius: 3px;
 	color: white;
-	text-align: left;
+  text-align: left;
+  overflow: hidden;
 	font-size: 12px;
 	height: 88px;
-	width: 66px;
+  width: 66px;
 	${({isBig}) => isBig && `
 		height: 264px;
 		width: 198px;
@@ -22,12 +23,16 @@ const Tile = styled.div`
 	`}
 `
 const GameImg = styled.img`
-	display: block;
-	border-top: 1px solid white;
 	background-color: black;
-	padding-bottom: 10%;
-	width: 100%;
-	text-align: center;
+  max-width: 100%;
+  max-height: 100%;
+  text-align: center;
+  word-break: break-word;
+  overflow: hidden;
+`
+const GameImgContainer = styled.div`
+  border-top: 1px solid white;
+  padding-bottom: 8px;
 `
 const GameIcon = styled.div`
 	position: absolute;
@@ -40,7 +45,7 @@ function GameTile({game, isBig, onClick}) {
 	return (
 		<Tile isBig={isBig} onClick={onClick}>
 			<div>{game.platform}</div>
-			{game.pic && <GameImg src={game.pic} alt={game.name}/>}
+			{game.pic && <GameImgContainer><GameImg src={game.pic} alt={game.name}/></GameImgContainer> }
 			{game.icon && <GameIcon>{game.icon}</GameIcon>}
 		</Tile>
 	)
