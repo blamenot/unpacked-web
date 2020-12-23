@@ -18,10 +18,10 @@ const BurgerButton = styled.button`
 function Burger(props) {
 	return (
 		<BurgerButton {...props} type="button">
-			<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<line x1="0" y1="3" x2="32" y2="3" stroke="white" strokeWidth="6"/>
-				<line x1="0" y1="16" x2="32" y2="16" stroke="white" strokeWidth="6"/>
-				<line x1="0" y1="29" x2="32" y2="29" stroke="white" strokeWidth="6"/>
+			<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<line x1="0" y1="2" x2="24" y2="2" stroke="white" strokeWidth="3"/>
+				<line x1="0" y1="12" x2="24" y2="12" stroke="white" strokeWidth="3"/>
+				<line x1="0" y1="22" x2="24" y2="22" stroke="white" strokeWidth="3"/>
 			</svg>
 		</BurgerButton>
 	)

@@ -12,10 +12,9 @@ const HeaderContainer = styled.header`
 	position: relative;
 `
 const HeaderLogo = styled.div`
-	line-height: 50px;
-	width: 60px;
-	text-align: center;
-	padding-top: 7px;
+	width: 50px;
+  text-align: center;
+  padding-top: 10px;
 `
 const MenuContainer = styled.div`
 	display: flex;
