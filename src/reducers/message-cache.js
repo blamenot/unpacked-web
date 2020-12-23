@@ -19,10 +19,7 @@ export default function(state = initialState, action) {
 	switch(action.type) {
 		case MESSAGE_CACHE_FETCH: return {
 			...state,
-			messages: [
-				...state.messages,
-				...action.payload.messages
-			],
+			messages: action.payload.messages,
 			messagesByChatWait: {
 				...state.messagesByChatWait,
 				[action.payload.chatId]: false
