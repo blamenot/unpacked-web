@@ -4,6 +4,8 @@ import HeaderMenu from './HeaderMenu'
 import HeaderPage from './HeaderPage'
 import Burger from './Burger'
 import Logo from '../common/Logo'
+import {Link} from 'react-router-dom'
+
 const HeaderContainer = styled.header`
 	display: flex;
 	justify-content: space-between;
@@ -66,9 +68,11 @@ function Header() {
 	}
 	return (
 		<HeaderContainer>
-			<HeaderLogo>
-				<Logo />
-			</HeaderLogo>
+      <Link to='/'>
+        <HeaderLogo>
+          <Logo />
+        </HeaderLogo>
+      </Link>
 			<MenuContainer isToggled={isToggled}>
 				<HeaderMenu/>
 			</MenuContainer>

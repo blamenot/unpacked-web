@@ -40,6 +40,10 @@ small {
 	text-transform: lowercase;
 	font-size: 12px;
 }
+#mainpage {
+  padding: 0 12px;
+}
+
 /*Override default leaflet syles*/
 .point-popup .leaflet-popup-content-wrapper{
 	background-color: #13131D;
