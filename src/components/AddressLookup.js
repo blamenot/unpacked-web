@@ -79,10 +79,10 @@ function AddressLookup({onLookup, address = '', readonly}) {
 							onFocus={onAddressInputFocus}
 							isPending={isPending}
 							/>
-			(!!suggestions && <AddressLookupSuggestions 
+			{!!suggestions && <AddressLookupSuggestions 
 				suggestions={suggestions}
 				onSelect={onSelect}
-				error={error}/>)
+				error={error}/>}
 		</AddressLookupContainer>
 	)
 }

@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux';
@@ -42,33 +42,31 @@ const store = createStore(
 );
 export default function() {
 	return (
-		<Fragment>
-			<Provider store={store}>
-				<BrowserRouter>
-					<Route component={Header} />
-						<Switch>
-							<Route exact path="/" component={PageMain} />
-							<Route exact path={PATH_PAGE_SEARCH} component={PageSearch} />
-							<Route exact path={PATH_PAGE_OFFERS} component={PageOffers} />
-							<Route exact path={PATH_PAGE_PROFILE} component={PageProfile} />
-							<Route exact path={PATH_PAGE_REGISTRATION} component={PageRegistration} />
+    <Provider store={store}>
+      <BrowserRouter>
+        <Route component={Header} />
+          <Switch>
+            <Route exact path="/" component={PageMain} />
+            <Route exact path={PATH_PAGE_SEARCH} component={PageSearch} />
+            <Route exact path={PATH_PAGE_OFFERS} component={PageOffers} />
+            <Route exact path={PATH_PAGE_PROFILE} component={PageProfile} />
+            <Route exact path={PATH_PAGE_REGISTRATION} component={PageRegistration} />
 
-							<Route exact path={PATH_PAGE_GAME} component={PageGame} />
-							<Route	exact
-									path={PATH_PAGE_GAME + '/' + PATH_TAB_LIST} 
-									render={routeProps => <PageGame {...routeProps} activeTab={PATH_TAB_LIST}/>} />
-							<Route	exact
-									path={PATH_PAGE_GAME + '/' + PATH_TAB_LOCATION} 
-									render={routeProps => <PageGame {...routeProps} activeTab={PATH_TAB_LOCATION}/>} />
+            <Route exact path={PATH_PAGE_GAME} component={PageGame} />
+            <Route	exact
+                path={PATH_PAGE_GAME + '/' + PATH_TAB_LIST} 
+                render={routeProps => <PageGame {...routeProps} activeTab={PATH_TAB_LIST}/>} />
+            <Route	exact
+                path={PATH_PAGE_GAME + '/' + PATH_TAB_LOCATION} 
+                render={routeProps => <PageGame {...routeProps} activeTab={PATH_TAB_LOCATION}/>} />
 
-							<Route exact path={PATH_PAGE_CHATS} component={PageChats} />
-							<Route exact path={PATH_PAGE_CHAT} component={PageChat} />
-							<Route component={PageNotFound} />
-						</Switch>
-					<Modals/>
-				</BrowserRouter>
-				<SubscriptionMessages />
-			</Provider>
-		</Fragment>
+            <Route exact path={PATH_PAGE_CHATS} component={PageChats} />
+            <Route exact path={PATH_PAGE_CHAT} component={PageChat} />
+            <Route component={PageNotFound} />
+          </Switch>
+        <Modals/>
+      </BrowserRouter>
+      <SubscriptionMessages />
+    </Provider>
 	)
 }

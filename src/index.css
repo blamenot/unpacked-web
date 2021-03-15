@@ -95,19 +95,6 @@ small {
 	margin: 12px;
 	position: relative;
 }
-.offer-delete {
-	position: absolute;
-	top: -4px;
-	right: 2px;
-	background: none;
-	border: none;
-	outline: none;
-	cursor: pointer;
-	padding: 0;
-	margin: 0;
-	font-size: 24px;
-	color: #FDE74C;
-}
 .map-wrapper {
 	display: inline-block;
 	width: 50%;

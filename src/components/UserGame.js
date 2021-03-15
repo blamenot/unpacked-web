@@ -1,14 +1,33 @@
 import React from 'react'
+import styled from 'styled-components'
 import {connect} from 'react-redux'
 import {userCacheDeleteUserGameRequest} from '../actions/user-cache'
 import GameLoader from '../containers/GameLoader'
 import GameTile from './GameTile'
+
+const OfferDelete = styled.button`
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: -6px;
+  right: -6px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-size: 24px;
+  color: #FDE74C;
+  text-shadow: 0 0 8px #154ea3;
+`
+
 function UserGame({gameId, ownerId, authUserId, onOffersDeleteRequest}) {
 	const deleteButton = (authUserId === ownerId
-		? <button className="offer-delete"
+		? <OfferDelete
 					onClick={() => onOffersDeleteRequest(ownerId, gameId)}>
 						&times;
-			</button> 
+			</OfferDelete> 
 		: '')
 	return (
 			<div className="offer">
