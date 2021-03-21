@@ -88,7 +88,7 @@ function ProfileForm({updatedUser, userUpdateUnsaved, readonly}) {
 				Your platforms
 				{ !readonly && (
 					<div>
-						<small>Currently only PS4 is supported, but you can uncheck it if you want...</small>
+						<small>Currently only the most popular platform is supported, but you can uncheck it if you want...</small>
 					</div>
 				)}
 			</StyledLabel>
@@ -97,7 +97,7 @@ function ProfileForm({updatedUser, userUpdateUnsaved, readonly}) {
 					<StyledCheckbox	checked={checkHasPlatform(updatedUser, PS4)}
 									onChange={() => onPlatformSelect(PS4)}
 									readonly={readonly}/>&nbsp;&nbsp;
-					{PS4}
+					Popular platform
 				</StyledLabel>
 			</div>
 		</ProfileFormContainer>

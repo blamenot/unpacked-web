@@ -28,7 +28,11 @@
 	<div id="root"></div>
 	<div id="mainpage">
 		<h1>Welocme to unpacked club</h1>
-		<p>Unpacked helps people to buy, sell and exchange game CDs on favorable terms.</p>
+    <p>Unpacked could helps people to buy, sell and exchange game CDs on favorable terms.</p>
+    <p>Project is discontinued, but if you like the idea you can view it on 
+      <a href="https://github.com/blamenot/unpacked-web" target="_blank" style="text-decoration: underline;">github</a>
+      or even <button id='contactAuthor' type="button">contact me</button></p>
+    <p>Main problem that could not be solved was connected with CD covers and game name copyrights</p>
 		<h1>Sell games to community members</h1>
 		<p>
 			You have games that you already finished, don't like, or don't have time to play?
@@ -49,7 +53,16 @@
 			window.rootEl.setAttribute('style', 'min-height: auto;')
 		} else {
 			window.mainPageEl.setAttribute('style', 'display: none;')
-		}
+    }
+    
+    function contactAuthor(){
+      var mailtoLink = document.createElement('a')
+      mailtoLink.setAttribute('href','mailto:bla'+String.fromCharCode(109)+'enot' + String.fromCharCode(64)+ 'yandex.ru?subject=unpacked')
+      document.body.appendChild(mailtoLink);
+      mailtoLink.click();
+      document.body.removeChild(mailtoLink);
+    }
+    document.getElementById('contactAuthor').addEventListener('click', contactAuthor);
 	</script>
     <!--
       This HTML file is a template.

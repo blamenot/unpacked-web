@@ -5,7 +5,7 @@ import {offersAddShowModal} from '../actions/offers-add'
 
 function OffersAdd({onOffersAddShowModal}) {
 	const game = {
-		platform: 'PS4',
+		platform: 'Platform',
 		name: 'Add game',
 		icon: '+',
 	}

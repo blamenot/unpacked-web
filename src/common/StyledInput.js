@@ -6,7 +6,7 @@ const StyledInputContainer = styled.form`
 	line-height: 50px;
 	margin: 16px 0;
 	padding-left: 15px;
-	background-color: #191A24;
+	background-color: #21222b;
 	${({readonly}) => readonly && `
 		padding-left: 0;
 		background: none;
