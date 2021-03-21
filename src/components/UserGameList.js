@@ -6,7 +6,8 @@ import UserGame from './UserGame'
 import styled from 'styled-components'
 
 const UserGameListEmpty = styled.p`
-	margin 16px 20px;
+	margin: 16px 20px;
+	font-size: 14px;
 `
 
 const UserGameListSearchLink = styled(Link)`
@@ -18,7 +19,7 @@ function UserGameList({gameIds, ownerId, isSelf}) {
 	if(!gameIds || Object.values(gameIds).length === 0) {
 		if(isSelf) {
 			return (<UserGameListEmpty>
-					Please add games you would like to sell/exchange or <UserGameListSearchLink to={PATH_PAGE_SEARCH}>search other member's games</UserGameListSearchLink>
+					Please add games you would like to offer or <UserGameListSearchLink to={PATH_PAGE_SEARCH}>search other member's games</UserGameListSearchLink>
 				</UserGameListEmpty>)
 		}
 		return <UserGameListEmpty>Game list is empty...</UserGameListEmpty>
