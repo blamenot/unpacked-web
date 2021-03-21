@@ -18,7 +18,7 @@ function HeaderPage() {
 		pageName = 'Find games'
 	}
 	if(useRouteMatch(PATH_PAGE_OFFERS)) {
-		pageName = 'Offers'
+		pageName = 'My games'
 	}
 	if(useRouteMatch(PATH_PAGE_REGISTRATION)) {
 		pageName = 'Registration'
